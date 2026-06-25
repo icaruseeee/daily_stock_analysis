@@ -294,7 +294,7 @@ export const IntelligentImport: React.FC<IntelligentImportProps> = ({
 
   return (
     <div className="space-y-4">
-      <div className="settings-surface-panel settings-border-strong rounded-xl border p-4 shadow-soft-card">
+      <div className="settings-surface-panel settings-border-divider rounded-xl border p-4 ">
         <p className="text-sm font-medium text-foreground">{t('settings.intelligentImportSupportedInputs')}</p>
         <p className="mt-1 text-xs leading-5 text-secondary-text">
           {t('settings.intelligentImportHint')}
@@ -305,14 +305,14 @@ export const IntelligentImport: React.FC<IntelligentImportProps> = ({
         onDrop={onDrop}
         onDragOver={(e) => { e.preventDefault(); setIsDragging(true); }}
         onDragLeave={(e) => { e.preventDefault(); setIsDragging(false); }}
-        className={`flex min-h-[96px] flex-col gap-4 rounded-xl border border-dashed  p-4 transition-colors ${
-          isDragging ? 'settings-drag-active' : 'settings-border-strong settings-surface-overlay-soft'
+        className={`flex min-h-[96px] flex-col gap-4 rounded-xl border border-divider p-4 transition-colors ${
+          isDragging ? 'settings-drag-active' : 'settings-border-divider settings-surface-overlay-soft'
         } ${disabled || isLoading ? 'cursor-not-allowed opacity-60' : ''}`}
       >
         <div className="flex flex-wrap items-center gap-2">
           <Button
             type="button"
-            variant="settings-secondary"
+            variant="secondary"
             disabled={disabled || isLoading}
             onClick={() => openFilePicker(imageInputRef)}
           >
@@ -328,7 +328,7 @@ export const IntelligentImport: React.FC<IntelligentImportProps> = ({
           />
           <Button
             type="button"
-            variant="settings-secondary"
+            variant="secondary"
             disabled={disabled || isLoading}
             onClick={() => openFilePicker(dataFileInputRef)}
           >
@@ -346,14 +346,14 @@ export const IntelligentImport: React.FC<IntelligentImportProps> = ({
         <div className="flex flex-col gap-2 sm:flex-row">
           <textarea
             placeholder={t('settings.intelligentImportPastePlaceholder')}
-            className="input-surface settings-surface-strong settings-border-strong min-h-[72px] w-full rounded-xl border px-3 py-2 text-sm text-foreground shadow-none transition-colors placeholder:text-muted-text focus:outline-none"
+            className="input-surface settings-surface-strong settings-border-divider min-h-[72px] w-full rounded-xl border px-3 py-2 text-sm text-foreground shadow-none transition-colors placeholder:text-muted-text focus:outline-none"
             value={pasteText}
             onChange={(e) => setPasteText(e.target.value)}
             disabled={disabled || isLoading}
           />
           <Button
             type="button"
-            variant="settings-secondary"
+            variant="secondary"
             className="shrink-0 sm:self-start"
             onClick={handlePasteParse}
             disabled={disabled || isLoading || !pasteText.trim()}
@@ -395,7 +395,7 @@ export const IntelligentImport: React.FC<IntelligentImportProps> = ({
               </button>
             </div>
           </div>
-          <div className="max-h-[220px] space-y-1 overflow-y-auto rounded-xl border settings-border-strong settings-surface-overlay-soft p-2">
+          <div className="max-h-[220px] space-y-1 overflow-y-auto rounded-xl border settings-border-divider settings-surface-overlay-soft p-2">
             {items.map((it) => {
               const confidence = normalizeConfidence(it.confidence);
               const confidenceMeta = getConfidenceMeta(confidence, language);
@@ -404,7 +404,7 @@ export const IntelligentImport: React.FC<IntelligentImportProps> = ({
                 <div
                   key={it.id}
                   className={`flex items-center gap-2 rounded-xl border px-3 py-2 text-sm ${
-                    it.code ? 'settings-border bg-[var(--settings-surface-strong)]' : 'border-danger/25 bg-danger/10'
+                    it.code ? 'settings-border bg-[var(--settings-surface-strong)]' : 'border-negative/25 bg-danger/10'
                   }`}
                 >
                   <input
@@ -412,7 +412,7 @@ export const IntelligentImport: React.FC<IntelligentImportProps> = ({
                     checked={it.checked}
                     onChange={() => toggleChecked(it.id)}
                     disabled={!it.code || disabled}
-                    className="settings-input-checkbox h-4 w-4 rounded border-border/70 bg-base"
+                    className="settings-input-checkbox h-4 w-4 rounded border-divider/70 bg-base"
                   />
                   <span className={it.code ? 'font-medium text-foreground' : 'font-medium text-danger'}>
                     {it.code || t('settings.intelligentImportParseFailed')}

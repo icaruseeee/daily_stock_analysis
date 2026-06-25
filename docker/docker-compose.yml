@@ -68,5 +68,24 @@ services:
     container_name: stock-server
     command: ["python", "main.py", "--serve-only", "--host", "0.0.0.0", "--port", "${API_PORT:-8000}"]
     # 若使用 network_mode: host，则以下 ports 映射无效，端口由 command 中的 --port 指定
+    # Caddy 反代后 server 端口无需暴露到公网，仅内网通信
     ports:
-      - "${API_PORT:-8000}:${API_PORT:-8000}"
+      - "8000:8000"
+
+  # Caddy 反代（自动 HTTPS + 访问日志）
+  caddy:
+    image: caddy:alpine
+    container_name: stock-caddy
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ../Caddyfile:/etc/caddy/Caddyfile:ro
+      - ../logs/caddy:/var/log/caddy
+      - caddy_data:/data
+    depends_on:
+      - server
+
+volumes:
+  caddy_data:

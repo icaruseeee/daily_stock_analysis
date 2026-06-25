@@ -12,9 +12,9 @@ interface InlineAlertProps {
 }
 
 const variantStyles: Record<InlineAlertVariant, string> = {
-  info: 'border-cyan/20 bg-cyan/10 text-cyan',
-  success: 'border-success/20 bg-success/10 text-success',
-  warning: 'border-warning/20 bg-warning/10 text-warning',
+  info: 'border-accent/20 bg-cyan/10 text-cyan',
+  success: 'border-positive/20 bg-success/10 text-success',
+  warning: 'border-caution/20 bg-warning/10 text-warning',
   danger: 'border-[hsl(var(--color-danger-alert-border)/0.3)] bg-[hsl(var(--color-danger-alert-bg)/0.1)] text-[hsl(var(--color-danger-alert-text))]',
 };
 
@@ -28,7 +28,7 @@ export const InlineAlert: React.FC<InlineAlertProps> = ({
   return (
     <div
       role="alert"
-      className={cn('max-w-full overflow-hidden rounded-2xl border px-4 py-3 shadow-soft-card', variantStyles[variant], className)}
+      className={cn('max-w-full overflow-hidden rounded-2xl border px-4 py-3 ', variantStyles[variant], className)}
     >
       <div className="flex flex-col gap-3 md:flex-row md:items-start md:justify-between">
         <div className="min-w-0">

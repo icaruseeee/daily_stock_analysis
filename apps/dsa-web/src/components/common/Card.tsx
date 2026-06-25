@@ -7,13 +7,13 @@ interface CardProps {
   children: React.ReactNode;
   className?: string;
   style?: React.CSSProperties;
-  variant?: 'default' | 'bordered' | 'gradient';
+  variant?: 'default' | 'bordered';
   hoverable?: boolean;
   padding?: 'none' | 'sm' | 'md' | 'lg';
 }
 
 /**
- * Card component with terminal-inspired variants and optional hover styling.
+ * Card component with Apple-inspired clean styling.
  */
 export const Card: React.FC<CardProps> = ({
   title,
@@ -33,38 +33,23 @@ export const Card: React.FC<CardProps> = ({
   };
 
   const variantStyles = {
-    default: 'terminal-card',
-    bordered: 'terminal-card',
-    gradient: 'gradient-border-card',
+    default: 'bg-surface border border-divider',
+    bordered: 'bg-surface border-2 border-accent',
   };
 
-  const hoverStyles = hoverable ? 'terminal-card-hover cursor-pointer' : '';
-
-  if (variant === 'gradient') {
-    return (
-      <div className={cn(variantStyles.gradient, className)} style={style}>
-        <div className={cn('gradient-border-card-inner', paddingStyles[padding])}>
-          {(title || subtitle) && (
-            <div className="mb-3">
-              {subtitle ? <span className="label-uppercase">{subtitle}</span> : null}
-              {title ? <h3 className="mt-1 text-lg font-semibold text-foreground">{title}</h3> : null}
-            </div>
-          )}
-          {children}
-        </div>
-      </div>
-    );
-  }
+  const hoverStyles = hoverable
+    ? 'cursor-pointer transition-shadow duration-200'
+    : '';
 
   return (
     <div
       style={style}
-      className={cn('rounded-2xl', variantStyles[variant], hoverStyles, paddingStyles[padding], className)}
+      className={cn('rounded-lg', variantStyles[variant], hoverStyles, paddingStyles[padding], className)}
     >
       {(title || subtitle) && (
         <div className="mb-3">
-          {subtitle ? <span className="label-uppercase">{subtitle}</span> : null}
-          {title ? <h3 className="mt-1 text-lg font-semibold text-foreground">{title}</h3> : null}
+          {subtitle ? <span className="text-label font-semibold uppercase tracking-[0.05em] text-ink-muted">{subtitle}</span> : null}
+          {title ? <h3 className="mt-1 text-body font-semibold">{title}</h3> : null}
         </div>
       )}
       {children}

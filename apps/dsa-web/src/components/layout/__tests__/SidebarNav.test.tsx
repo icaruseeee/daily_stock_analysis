@@ -136,7 +136,7 @@ describe('SidebarNav', () => {
 
     const alertsLink = screen.getByRole('link', { name: '告警' });
     expect(alertsLink).toHaveAttribute('href', '/alerts');
-    expect(alertsLink).toHaveClass('font-medium');
+    expect(alertsLink).toHaveClass('no-underline');
   });
 
   it('renders the AI signals navigation item and marks it active', () => {
@@ -148,7 +148,7 @@ describe('SidebarNav', () => {
 
     const signalsLink = screen.getByRole('link', { name: 'AI 建议' });
     expect(signalsLink).toHaveAttribute('href', '/decision-signals');
-    expect(signalsLink).toHaveClass('font-medium');
+    expect(signalsLink).toHaveClass('no-underline');
   });
 
   it('opens the logout confirmation and confirms logout', async () => {

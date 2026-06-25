@@ -718,7 +718,7 @@ export const RunFlowGraph: React.FC<RunFlowGraphProps> = ({
               key={group.id}
               data-testid={`run-flow-expanded-group-${group.id}`}
               aria-hidden="true"
-              className="pointer-events-none absolute rounded-lg border border-primary/25 bg-primary/7 shadow-inner"
+              className="pointer-events-none absolute rounded-lg border border-accent/25 bg-primary/7 shadow-inner"
               style={{
                 left: group.x,
                 top: group.y,
@@ -751,13 +751,13 @@ export const RunFlowGraph: React.FC<RunFlowGraphProps> = ({
             const expanded = Boolean(expandedNodeIds?.has(node.id));
             const compact = Boolean(node.compact);
             const nodeStateClass = selected
-              ? 'border-primary/85 bg-primary/8 shadow-lg ring-2 ring-primary/25'
+              ? 'border-accent/85 bg-primary/8  ring-2 ring-primary/25'
               : compact
                 ? 'border-subtle/70 bg-base/70 ring-1 ring-white/5'
                 : 'border-subtle/80 bg-elevated/92 ring-1 ring-white/5';
             const nodeDensityClass = compact
-              ? 'px-2.5 py-2 shadow-none hover:shadow-soft-card'
-              : 'px-3 py-2 shadow-soft-card hover:shadow-lg';
+              ? 'px-2.5 py-2 shadow-none hover:'
+              : 'px-3 py-2  hover:';
             return (
               <div
                 key={node.id}
@@ -773,7 +773,7 @@ export const RunFlowGraph: React.FC<RunFlowGraphProps> = ({
                   aria-label={t('runFlow.graph.nodeAria', { label: node.label, status: statusLabel })}
                   data-layout-lane={node.laneIndex}
                   data-layout-row={node.row}
-                  className={`box-border flex max-w-full min-w-0 flex-col items-start overflow-hidden rounded-lg border-2 text-left backdrop-blur-sm transition-all hover:-translate-y-0.5 hover:border-primary/60 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-cyan/15 ${nodeDensityClass} ${nodeStateClass} ${
+                  className={`box-border flex max-w-full min-w-0 flex-col items-start overflow-hidden rounded-lg border-2 text-left backdrop-blur-sm transition-all hover:-translate-y-0.5 hover:border-accent/60 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-cyan/15 ${nodeDensityClass} ${nodeStateClass} ${
                     expandable ? 'pb-8' : ''
                   }`}
                   style={{ width: node.width, height: node.height }}
@@ -811,7 +811,7 @@ export const RunFlowGraph: React.FC<RunFlowGraphProps> = ({
                       event.stopPropagation();
                       onToggleExpanded?.(node.id);
                     }}
-                    className="absolute bottom-2 right-2 z-40 inline-flex h-[18px] items-center gap-0.5 rounded-md border border-subtle bg-base/80 px-1 text-[9px] font-medium leading-none text-secondary-text shadow-sm transition-colors hover:border-primary/60 hover:text-foreground focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-cyan/15"
+                    className="absolute bottom-2 right-2 z-40 inline-flex h-[18px] items-center gap-0.5 rounded-md border border-subtle bg-base/80 px-1 text-[9px] font-medium leading-none text-secondary-text  transition-colors hover:border-accent/60 hover:text-foreground focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-cyan/15"
                   >
                     {expanded ? (
                       <ChevronDown className="h-2 w-2" aria-hidden="true" />

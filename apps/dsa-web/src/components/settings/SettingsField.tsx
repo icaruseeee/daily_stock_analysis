@@ -154,7 +154,7 @@ function renderFieldControl(
               </div>
               <Button
                 type="button"
-                variant="settings-secondary"
+                variant="secondary"
                 size="lg"
                 className="px-3 text-xs text-muted-text shadow-none hover:text-danger"
                 disabled={disabled || !schema?.isEditable || values.length <= 1}
@@ -171,7 +171,7 @@ function renderFieldControl(
           <div className="flex items-center gap-2">
             <Button
               type="button"
-              variant="settings-secondary"
+              variant="secondary"
               size="sm"
               className="text-xs shadow-none"
               disabled={disabled || !schema?.isEditable}
@@ -240,8 +240,8 @@ export const SettingsField: React.FC<SettingsFieldProps> = ({
   return (
     <div
       className={cn(
-        'rounded-[1.15rem] border bg-[var(--settings-surface)] p-4 shadow-soft-card transition-[background-color,border-color,box-shadow] duration-200',
-        hasError ? 'border-danger/40 hover:border-danger/55' : 'border-[var(--settings-border)] hover:border-[var(--settings-border-strong)]',
+        'rounded-[1.15rem] border bg-[var(--settings-surface)] p-4  transition-[background-color,border-color,box-shadow] duration-200',
+        hasError ? 'border-negative/40 hover:border-negative/55' : 'border-[var(--settings-border)] hover:border-[var(--settings-border-divider)]',
         'hover:bg-[var(--settings-surface-hover)]',
       )}
     >

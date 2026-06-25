@@ -10,8 +10,6 @@ interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   hint?: string;
   error?: string;
   trailingAction?: React.ReactNode;
-  /** Selects a scoped visual appearance for the input. */
-  appearance?: 'default' | 'login';
   /** Enables the built-in password visibility toggle. */
   allowTogglePassword?: boolean;
   /** Controls the leading icon style. */
@@ -22,19 +20,18 @@ interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   onPasswordVisibleChange?: (visible: boolean) => void;
 }
 
-export const Input = ({ 
-  label, 
-  hint, 
-  error, 
-  className = '', 
-  id, 
-  trailingAction, 
-  appearance = 'default',
+export const Input = ({
+  label,
+  hint,
+  error,
+  className = '',
+  id,
+  trailingAction,
   allowTogglePassword,
   iconType = 'none',
   passwordVisible,
   onPasswordVisibleChange,
-  ...props 
+  ...props
 }: InputProps) => {
   const { t } = useUiLanguage();
   const generatedId = useId();
@@ -47,55 +44,29 @@ export const Input = ({
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
   const isPasswordInput = props.type === 'password';
   const isVisibilityControlled = typeof passwordVisible === 'boolean';
-  const isLoginAppearance = appearance === 'login';
   const visible = isVisibilityControlled ? passwordVisible : isPasswordVisible;
   const effectiveType = isPasswordInput && allowTogglePassword && visible ? 'text' : props.type;
 
   const renderLeadingIcon = () => {
     if (iconType === 'password') {
-      return (
-        <Lock
-          className={cn(
-            'h-4 w-4',
-            isLoginAppearance ? 'text-[var(--login-input-icon)]' : 'text-muted-text/55'
-          )}
-        />
-      );
+      return <Lock className="h-4 w-4 text-ink-muted" />;
     }
     if (iconType === 'key') {
-      return (
-        <Key
-          className={cn(
-            'h-4 w-4',
-            isLoginAppearance ? 'text-[var(--login-input-icon)]' : 'text-muted-text/55'
-          )}
-        />
-      );
+      return <Key className="h-4 w-4 text-ink-muted" />;
     }
     return null;
   };
 
   const leadingIcon = renderLeadingIcon();
-  const inputStyle = error
-    ? {
-      ...props.style,
-      ['--input-surface-border-focus' as string]: 'hsla(var(--destructive), 0.4)',
-      ['--input-surface-focus-ring' as string]: '0 0 0 4px hsla(var(--destructive), 0.1)',
-    }
-    : props.style;
 
   const defaultTrailingAction = isPasswordInput && allowTogglePassword ? (
     <button
       type="button"
       className={cn(
-        'inline-flex h-8 w-8 items-center justify-center rounded-lg border transition-all duration-200 focus:outline-none focus:ring-2',
-        isLoginAppearance
-          ? visible
-            ? 'border-[var(--login-input-toggle-active-border)] bg-[var(--login-input-toggle-active-bg)] text-[var(--login-input-toggle-active-text)] shadow-[0_0_14px_var(--login-accent-glow)] focus:ring-[var(--login-input-toggle-ring)]'
-            : 'border-[var(--login-input-toggle-border)] bg-[var(--login-input-toggle-bg)] text-[var(--login-input-toggle-text)] hover:border-[var(--login-input-toggle-border-hover)] hover:bg-[var(--login-input-toggle-bg-hover)] hover:text-[var(--login-input-toggle-text-hover)] focus:ring-[var(--login-input-toggle-ring)]'
-          : visible
-            ? 'border-warning/40 bg-warning/15 text-warning shadow-[0_0_10px_hsla(var(--warning),0.15)]'
-            : 'border-border/40 bg-muted/20 text-muted-text hover:border-warning/40 hover:text-warning hover:shadow-[0_0_10px_hsla(var(--warning),0.15)] focus:ring-primary/30'
+        'inline-flex h-8 w-8 items-center justify-center rounded-lg border transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-accent/30',
+        visible
+          ? 'border-accent/30 bg-accent/10 text-accent'
+          : 'border-divider bg-surface text-ink-muted hover:border-accent/30 hover:text-accent'
       )}
       onClick={() => {
         const nextVisible = !visible;
@@ -118,10 +89,7 @@ export const Input = ({
       {label ? (
         <label
           htmlFor={inputId}
-          className={cn(
-            'mb-2 text-sm font-medium',
-            isLoginAppearance ? 'text-[var(--login-label-text)]' : 'text-foreground'
-          )}
+          className="mb-1.5 text-label font-medium"
         >
           {label}
         </label>
@@ -136,16 +104,13 @@ export const Input = ({
           id={inputId}
           aria-describedby={describedBy}
           aria-invalid={ariaInvalid}
-          style={inputStyle}
-          data-appearance={appearance}
           className={cn(
-            'input-surface input-focus-glow h-11 w-full rounded-xl border bg-transparent px-4 text-sm transition-all',
-            'focus:outline-none',
-            isLoginAppearance ? 'input-appearance-login' : '',
-            error ? 'border-danger/30' : '',
+            'h-10 w-full rounded-md border border-divider bg-surface px-3 text-body transition-all placeholder:text-ink-muted',
+            'focus:border-accent focus:outline-none focus:ring-4 focus:ring-accent/20',
+            error ? 'border-negative focus:border-negative focus:ring-negative/20' : '',
             leadingIcon ? 'pl-10' : '',
             finalTrailingAction ? 'pr-12' : '',
-            'disabled:cursor-not-allowed disabled:opacity-60',
+            'disabled:cursor-not-allowed disabled:opacity-60 disabled:bg-surface-2',
             className,
           )}
           {...props}
@@ -158,24 +123,11 @@ export const Input = ({
         ) : null}
       </div>
       {error ? (
-        <p
-          id={errorId}
-          role="alert"
-          className={cn(
-            'mt-2 text-xs',
-            isLoginAppearance ? 'text-[var(--login-error-text)]' : 'text-danger'
-          )}
-        >
+        <p id={errorId} role="alert" className="mt-2 text-label text-negative">
           {error}
         </p>
       ) : hint ? (
-        <p
-          id={hintId}
-          className={cn(
-            'mt-2 text-xs',
-            isLoginAppearance ? 'text-[var(--login-hint-text)]' : 'text-secondary-text'
-          )}
-        >
+        <p id={hintId} className="mt-2 text-label text-ink-muted">
           {hint}
         </p>
       ) : null}

@@ -108,7 +108,7 @@ export const AuthSettingsCard: React.FC = () => {
       }
     >
       <form className="space-y-4" onSubmit={handleSubmit}>
-        <div className="rounded-xl border border-[var(--settings-border)] bg-[var(--settings-surface)] p-4 shadow-soft-card transition-[background-color,border-color] duration-200 hover:border-[var(--settings-border-strong)] hover:bg-[var(--settings-surface-hover)]">
+        <div className="rounded-xl border border-[var(--settings-border)] bg-[var(--settings-surface)] p-4  transition-[background-color,border-color] duration-200 hover:border-[var(--settings-border-divider)] hover:bg-[var(--settings-surface-hover)]">
           <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
             <div className="space-y-1">
               <p className="text-sm font-semibold text-foreground">{t('settings.authStatus')}</p>
@@ -119,7 +119,7 @@ export const AuthSettingsCard: React.FC = () => {
               disabled={isSubmitting}
               label={desiredEnabled ? t('common.enabled') : t('common.disabled')}
               onChange={(event) => setDesiredEnabled(event.target.checked)}
-              containerClassName="rounded-full border border-[var(--settings-border)] bg-[var(--settings-surface-hover)] px-4 py-2 shadow-soft-card transition-[background-color,border-color] duration-200 hover:border-[var(--settings-border-strong)] hover:bg-[var(--settings-surface)]"
+              containerClassName="rounded-full border border-[var(--settings-border)] bg-[var(--settings-surface-hover)] px-4 py-2  transition-[background-color,border-color] duration-200 hover:border-[var(--settings-border-divider)] hover:bg-[var(--settings-surface)]"
             />
           </div>
         </div>
@@ -197,12 +197,12 @@ export const AuthSettingsCard: React.FC = () => {
         ) : null}
 
         <div className="flex flex-wrap items-center gap-2">
-          <Button type="submit" variant="settings-primary" isLoading={isSubmitting} disabled={!isDirty}>
+          <Button type="submit" variant="primary" isLoading={isSubmitting} disabled={!isDirty}>
             {targetActionLabel}
           </Button>
           <Button
             type="button"
-            variant="settings-secondary"
+            variant="secondary"
             onClick={() => {
               setDesiredEnabled(authEnabled);
               setError(null);

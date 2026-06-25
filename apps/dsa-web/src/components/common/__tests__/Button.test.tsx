@@ -15,7 +15,7 @@ describe('Button', () => {
     const button = screen.getByRole('button', { name: 'Delete' });
     expect(button).toHaveAttribute('type', 'button');
     expect(button).toHaveAttribute('data-variant', 'danger');
-    expect(button.className).toContain('bg-danger');
+    expect(button.className).toContain('bg-negative');
   });
 
   it('disables the button when loading and shows loading text', () => {
@@ -32,20 +32,15 @@ describe('Button', () => {
 
     const button = screen.getByRole('button', { name: 'Bulk Delete' });
     expect(button).toHaveAttribute('data-variant', 'danger-subtle');
-    expect(button.className).toContain('border-danger/60');
-    expect(button.className).toContain('bg-danger/10');
+    expect(button.className).toContain('border-negative/50');
+    expect(button.className).toContain('bg-negative/10');
   });
 
-  it.each([
-    ['action-primary', '--home-action-ai-bg', '--home-action-ai-border', '--home-action-ai-text'],
-    ['action-secondary', '--home-action-report-bg', '--home-action-report-border', '--home-action-report-text'],
-  ] as const)('supports the %s variant', (variant, bgToken, borderToken, textToken) => {
-    render(<Button variant={variant}>Quick Action</Button>);
-
-    const button = screen.getByRole('button', { name: 'Quick Action' });
-    expect(button).toHaveAttribute('data-variant', variant);
-    expect(button.className).toContain(bgToken);
-    expect(button.className).toContain(borderToken);
-    expect(button.className).toContain(textToken);
+  it('supports the primary variant', () => {
+    render(<Button variant="primary">Primary</Button>);
+    const button = screen.getByRole('button', { name: 'Primary' });
+    expect(button).toHaveAttribute('data-variant', 'primary');
+    expect(button.className).toContain('bg-accent');
+    expect(button.className).toContain('text-on-accent');
   });
 });

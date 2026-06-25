@@ -523,7 +523,7 @@ describe('RunFlowGraph', () => {
     );
     expect(screen.getByTestId('run-flow-node-news')).toHaveClass(
       'border-2',
-      'border-primary/85',
+      'border-accent/85',
       'bg-primary/8',
       'ring-2',
       'ring-primary/25',

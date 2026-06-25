@@ -165,7 +165,7 @@ type SignalMetricProps = {
 };
 
 const SignalMetric: React.FC<SignalMetricProps> = ({ label, value, tone = 'default' }) => (
-  <div className="min-w-0 rounded-xl border border-border/60 bg-elevated/45 px-3 py-2">
+  <div className="min-w-0 rounded-xl border border-divider/60 bg-elevated/45 px-3 py-2">
     <p className="truncate text-[11px] text-muted-text">{label}</p>
     <p className={cn('mt-1 truncate text-sm font-semibold tabular-nums', metricToneClass[tone])}>{value}</p>
   </div>
@@ -174,10 +174,10 @@ const SignalMetric: React.FC<SignalMetricProps> = ({ label, value, tone = 'defau
 type SignalTextTone = 'default' | 'warning' | 'danger' | 'info';
 
 const textToneClass: Record<SignalTextTone, string> = {
-  default: 'border-border/55 bg-elevated/35 text-secondary-text',
-  warning: 'border-warning/25 bg-warning/10 text-warning',
-  danger: 'border-danger/25 bg-danger/10 text-danger',
-  info: 'border-cyan/25 bg-cyan/10 text-cyan',
+  default: 'border-divider/55 bg-elevated/35 text-secondary-text',
+  warning: 'border-caution/25 bg-warning/10 text-warning',
+  danger: 'border-negative/25 bg-danger/10 text-danger',
+  info: 'border-accent/25 bg-cyan/10 text-cyan',
 };
 
 type SignalTextBlockProps = {
@@ -218,8 +218,8 @@ export const DecisionSignalCard: React.FC<DecisionSignalCardProps> = ({ item, on
   ].filter((entry) => hasDisplayValue(entry.value));
   const className = cn(
     'block w-full rounded-2xl border bg-card/75 p-4 text-left',
-    interactive ? 'transition-colors hover:border-cyan/40 hover:bg-hover/70' : '',
-    selected ? 'border-cyan/50 bg-cyan/10' : 'border-border/70',
+    interactive ? 'transition-colors hover:border-accent/40 hover:bg-hover/70' : '',
+    selected ? 'border-accent/50 bg-cyan/10' : 'border-divider/70',
   );
   const content = (
     <>
@@ -247,7 +247,7 @@ export const DecisionSignalCard: React.FC<DecisionSignalCardProps> = ({ item, on
       </div>
 
       {pricePlanItems.length > 0 ? (
-        <div className="mt-3 rounded-xl border border-border/60 bg-elevated/35 px-3 py-2.5">
+        <div className="mt-3 rounded-xl border border-divider/60 bg-elevated/35 px-3 py-2.5">
           <div className="grid gap-2 sm:grid-cols-3">
             {pricePlanItems.map((entry) => (
               <div key={entry.label} className="min-w-0">
@@ -306,7 +306,7 @@ type DetailRowProps = {
 };
 
 const DetailRow: React.FC<DetailRowProps> = ({ label, value }) => (
-  <div className="rounded-xl border border-border/60 bg-elevated/40 px-3 py-2">
+  <div className="rounded-xl border border-divider/60 bg-elevated/40 px-3 py-2">
     <p className="text-xs text-secondary-text">{label}</p>
     <div className="mt-1 text-sm text-foreground">{value || '-'}</div>
   </div>
@@ -397,7 +397,7 @@ export const DecisionSignalDetails: React.FC<DecisionSignalDetailsProps> = ({
         ) : (
           <div className="grid gap-3">
             {outcomes.map((outcome) => (
-              <div key={outcome.id} className="rounded-xl border border-border/60 bg-elevated/40 px-3 py-3">
+              <div key={outcome.id} className="rounded-xl border border-divider/60 bg-elevated/40 px-3 py-3">
                 <div className="flex flex-wrap items-center justify-between gap-2">
                   <div className="flex flex-wrap items-center gap-2">
                     <span className="text-sm font-medium text-foreground">{getDecisionSignalHorizonLabel(outcome.horizon, t)}</span>

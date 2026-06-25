@@ -447,7 +447,7 @@ const ChannelRow: React.FC<ChannelRowProps> = ({
   const modelsInputId = `llm-channel-${channel.id}-models`;
 
   return (
-    <div className="mb-2 overflow-hidden rounded-xl border border-[var(--settings-border)] bg-[var(--settings-surface)] shadow-soft-card transition-[background-color,border-color,box-shadow] duration-200 hover:border-[var(--settings-border-strong)] hover:bg-[var(--settings-surface-hover)]">
+    <div className="mb-2 overflow-hidden rounded-xl border border-[var(--settings-border)] bg-[var(--settings-surface)]  transition-[background-color,border-color,box-shadow] duration-200 hover:border-[var(--settings-border-divider)] hover:bg-[var(--settings-surface-hover)]">
       <div
         className="flex cursor-pointer select-none items-center gap-2.5 px-4 py-3 transition-colors"
         onClick={() => onToggleExpand(index)}
@@ -466,7 +466,7 @@ const ChannelRow: React.FC<ChannelRowProps> = ({
           type="checkbox"
           checked={channel.enabled}
           disabled={busy}
-          className="settings-input-checkbox h-4 w-4 shrink-0 rounded border-border/70 bg-base"
+          className="settings-input-checkbox h-4 w-4 shrink-0 rounded border-divider/70 bg-base"
           onClick={(e) => e.stopPropagation()}
           onChange={(e) => onUpdate(index, 'enabled', e.target.checked)}
         />
@@ -659,7 +659,7 @@ const ChannelRow: React.FC<ChannelRowProps> = ({
             <div className="flex flex-wrap items-center gap-2">
               <Button
                 type="button"
-                variant="settings-secondary"
+                variant="secondary"
                 size="sm"
                 className="px-3 text-[11px] shadow-none"
                 disabled={busy}
@@ -702,7 +702,7 @@ const ChannelRow: React.FC<ChannelRowProps> = ({
                         ))}
                         disabled={busy}
                         onChange={() => onUpdate(index, 'models', toggleModelSelection(channel.models, model, channel.protocol))}
-                        className="settings-input-checkbox h-4 w-4 rounded border-border/70 bg-base"
+                        className="settings-input-checkbox h-4 w-4 rounded border-divider/70 bg-base"
                       />
                       <span>{model}</span>
                     </label>
@@ -743,7 +743,7 @@ const ChannelRow: React.FC<ChannelRowProps> = ({
           <div className="flex items-center gap-2 pt-1">
             <Button
               type="button"
-              variant="settings-secondary"
+              variant="secondary"
               size="sm"
               className="px-3 text-[11px] shadow-none"
               disabled={busy}
@@ -796,7 +796,7 @@ const ChannelRow: React.FC<ChannelRowProps> = ({
               </div>
               <Button
                 type="button"
-                variant="settings-secondary"
+                variant="secondary"
                 size="sm"
                 className="px-3 text-[11px] shadow-none"
                 disabled={busy || capabilityBusy || selectedCapabilities.length === 0}
@@ -815,7 +815,7 @@ const ChannelRow: React.FC<ChannelRowProps> = ({
                       checked={selectedCapabilities.includes(option.value)}
                       disabled={busy || capabilityBusy}
                       onChange={() => onToggleCapability(channel, option.value)}
-                      className="settings-input-checkbox h-3.5 w-3.5 rounded border-border/70 bg-base"
+                      className="settings-input-checkbox h-3.5 w-3.5 rounded border-divider/70 bg-base"
                     />
                     <span>{option.label}</span>
                   </label>
@@ -2109,7 +2109,7 @@ export const LLMChannelEditor: React.FC<LLMChannelEditorProps> = ({
     <div className="space-y-4">
       <button
         type="button"
-        className="flex w-full items-center justify-between rounded-[1.35rem] border border-[var(--settings-border)] bg-[var(--settings-surface)] px-5 py-4 text-left shadow-soft-card transition-[background-color,border-color,box-shadow] duration-200 hover:border-[var(--settings-border-strong)] hover:bg-[var(--settings-surface-hover)]"
+        className="flex w-full items-center justify-between rounded-[1.35rem] border border-[var(--settings-border)] bg-[var(--settings-surface)] px-5 py-4 text-left  transition-[background-color,border-color,box-shadow] duration-200 hover:border-[var(--settings-border-divider)] hover:bg-[var(--settings-surface-hover)]"
         onClick={() => setIsCollapsed((previous) => !previous)}
       >
         <div className="space-y-1">
@@ -2126,7 +2126,7 @@ export const LLMChannelEditor: React.FC<LLMChannelEditorProps> = ({
 
       {!isCollapsed ? (
         <div className="space-y-4 animate-in fade-in slide-in-from-top-2 duration-300">
-          <div className="rounded-[1.35rem] border border-[var(--settings-border)] bg-[var(--settings-surface)] p-4 shadow-soft-card">
+          <div className="rounded-[1.35rem] border border-[var(--settings-border)] bg-[var(--settings-surface)] p-4 ">
             <div className="mb-3 flex items-center justify-between">
               <div>
                 <h4 className="text-sm font-medium text-foreground">快速添加渠道</h4>
@@ -2135,7 +2135,7 @@ export const LLMChannelEditor: React.FC<LLMChannelEditorProps> = ({
               <Badge variant="default" className="border-[var(--settings-border)] bg-[var(--settings-surface-hover)] text-muted-text">{channels.length} 个渠道</Badge>
             </div>
             <div className="flex items-center gap-2">
-              <Button type="button" variant="settings-primary" className="whitespace-nowrap" disabled={busy} onClick={addChannel}>
+              <Button type="button" variant="primary" className="whitespace-nowrap" disabled={busy} onClick={addChannel}>
                 + 添加渠道
               </Button>
               <Select
@@ -2161,7 +2161,7 @@ export const LLMChannelEditor: React.FC<LLMChannelEditorProps> = ({
             </div>
 
             {channels.length === 0 ? (
-              <div className="settings-surface-overlay-muted rounded-[1.35rem] border border-dashed settings-border-strong px-4 py-10 text-center">
+              <div className="settings-surface-overlay-muted rounded-[1.35rem] border  settings-border-divider px-4 py-10 text-center">
                 <p className="text-sm font-medium text-secondary-text">还没有渠道</p>
                 <p className="mt-1 text-xs text-muted-text">选择服务商预设后点击“添加渠道”即可开始配置。</p>
               </div>
@@ -2189,7 +2189,7 @@ export const LLMChannelEditor: React.FC<LLMChannelEditorProps> = ({
           </div>
 
           {managesRuntimeConfig ? (
-            <div className="rounded-[1.35rem] border border-[var(--settings-border)] bg-[var(--settings-surface)] p-4 shadow-soft-card">
+            <div className="rounded-[1.35rem] border border-[var(--settings-border)] bg-[var(--settings-surface)] p-4 ">
               <div className="mb-4 flex items-center justify-between">
                 <div>
                   <span className="settings-accent-text text-xs font-medium uppercase tracking-wider">运行时参数</span>
@@ -2224,7 +2224,7 @@ export const LLMChannelEditor: React.FC<LLMChannelEditorProps> = ({
               </div>
 
               {availableModels.length === 0 ? (
-                <div className="rounded-xl border border-dashed settings-border-strong settings-surface-overlay-soft px-3 py-2 text-xs text-muted-text">
+                <div className="rounded-xl border  settings-border-divider settings-surface-overlay-soft px-3 py-2 text-xs text-muted-text">
                   先添加至少一个已启用渠道并填写模型，下面的主模型 / 备选模型 / Vision 选项才会出现。
                 </div>
               ) : (
@@ -2282,7 +2282,7 @@ export const LLMChannelEditor: React.FC<LLMChannelEditorProps> = ({
                       examples={['LITELLM_FALLBACK_MODELS=deepseek/deepseek-v4-pro,gemini/gemini-3-flash-preview']}
                       compact
                     />
-                    <div className="space-y-2 rounded-xl border settings-border-strong settings-surface-overlay-soft p-3">
+                    <div className="space-y-2 rounded-xl border settings-border-divider settings-surface-overlay-soft p-3">
                       {availableModels.map((model) => (
                         <label key={model} className="flex items-center gap-2 text-sm text-secondary-text">
                           <input
@@ -2290,7 +2290,7 @@ export const LLMChannelEditor: React.FC<LLMChannelEditorProps> = ({
                             checked={runtimeConfig.fallbackModels.includes(model)}
                             disabled={busy || model === runtimeConfig.primaryModel}
                             onChange={() => toggleFallbackModel(model)}
-                            className="settings-input-checkbox h-4 w-4 rounded border-border/70 bg-base"
+                            className="settings-input-checkbox h-4 w-4 rounded border-divider/70 bg-base"
                           />
                           <span>{model}</span>
                         </label>
@@ -2337,8 +2337,7 @@ export const LLMChannelEditor: React.FC<LLMChannelEditorProps> = ({
           <div className="flex flex-wrap items-center gap-3">
             <Button
               type="button"
-              variant="settings-primary"
-              glow
+              variant="primary"
               disabled={busy || !hasChanges}
               onClick={() => void handleSave()}
             >

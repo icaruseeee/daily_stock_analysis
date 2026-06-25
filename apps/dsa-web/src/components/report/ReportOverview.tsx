@@ -247,7 +247,7 @@ export const ReportOverview: React.FC<ReportOverviewProps> = ({
         {/* 左侧：股票信息与结论 */}
         <div className="lg:col-span-2 space-y-5">
           {/* 股票头部 */}
-          <Card variant="gradient" padding="md" className="home-report-hero">
+          <Card variant="default" padding="md" className="home-report-hero">
             <div className="flex items-start justify-between mb-5">
               <div className="flex-1">
                 <div className="flex items-center gap-3">
@@ -300,32 +300,34 @@ export const ReportOverview: React.FC<ReportOverviewProps> = ({
           </Card>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 items-start">
-            {/* 操作建议 */}
-            <Card
-              variant="bordered"
-              padding="sm"
-              hoverable
-              className="home-panel-card home-insight-card"
-              style={{ ['--home-insight-tone' as string]: 'var(--home-strategy-buy)' }}
-            >
-              <div className="flex items-start gap-3">
-                <div className="home-insight-icon w-8 h-8 rounded-lg bg-success/10 flex items-center justify-center flex-shrink-0">
-                  <svg className="w-4 h-4 text-success" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />
-                  </svg>
+            <div className="space-y-4">
+              {/* 操作建议 */}
+              <Card
+                variant="default"
+                padding="sm"
+                hoverable
+                className="home-panel-card home-insight-card"
+                style={{ ['--home-insight-tone' as string]: 'var(--home-strategy-buy)' }}
+              >
+                <div className="flex items-start gap-3">
+                  <div className="home-insight-icon w-8 h-8 rounded-lg bg-success/10 flex items-center justify-center flex-shrink-0">
+                    <svg className="w-4 h-4 text-success" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />
+                    </svg>
+                  </div>
+                  <div className="space-y-1.5">
+                    <h4 className="home-insight-title text-[11px] font-medium uppercase tracking-[0.16em]">{text.actionAdvice}</h4>
+                    <p className="home-insight-body text-sm leading-6">
+                      {summary.operationAdvice || text.noAdvice}
+                    </p>
+                  </div>
                 </div>
-                <div className="space-y-1.5">
-                  <h4 className="home-insight-title text-[11px] font-medium uppercase tracking-[0.16em]">{text.actionAdvice}</h4>
-                  <p className="home-insight-body text-sm leading-6">
-                    {summary.operationAdvice || text.noAdvice}
-                  </p>
-                </div>
-              </div>
-            </Card>
+              </Card>
+            </div>
 
             {/* 趋势预测 */}
             <Card
-              variant="bordered"
+              variant="default"
               padding="sm"
               hoverable
               className="home-panel-card home-insight-card"
@@ -366,7 +368,7 @@ export const ReportOverview: React.FC<ReportOverviewProps> = ({
         {/* 右侧：情绪指标 / 自选操作 */}
         <div className="flex flex-col space-y-4">
           {watchlist && meta.reportType !== 'market_review' && (
-            <Card variant="bordered" padding="sm" className="home-panel-card">
+            <Card variant="default" padding="sm" className="home-panel-card">
               <div className="text-center space-y-3">
                 <span className="label-uppercase">{t('report.watchlist')}</span>
                 <div className="text-xs text-muted-text font-mono">{meta.stockCode}</div>
@@ -385,7 +387,7 @@ export const ReportOverview: React.FC<ReportOverviewProps> = ({
               </div>
             </Card>
           )}
-          <Card variant="bordered" padding="md" className="home-panel-card home-rail-card !overflow-visible">
+          <Card variant="default" padding="md" className="home-panel-card home-rail-card !overflow-visible">
             <div className="text-center">
               <h3 className="mb-5 text-sm font-medium tracking-wide text-foreground">{text.marketSentiment}</h3>
               <ScoreGauge score={summary.sentimentScore} size="lg" language={reportLanguage} />

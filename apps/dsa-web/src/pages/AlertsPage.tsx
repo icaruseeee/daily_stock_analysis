@@ -321,7 +321,7 @@ const AlertsPage: React.FC = () => {
       <AlertTriggerHistory triggers={triggers} isLoading={triggersLoading} />
 
       {notificationsError ? <ApiErrorAlert error={notificationsError} onDismiss={() => setNotificationsError(null)} /> : null}
-      <Card title="通知尝试记录" subtitle="通知结果" variant="bordered" padding="md">
+      <Card title="通知尝试记录" subtitle="通知结果" variant="default" padding="md">
         {notificationsLoading ? <Loading label="正在加载通知尝试记录" /> : null}
         {!notificationsLoading && notifications.length === 0 ? (
           <EmptyState
@@ -333,7 +333,7 @@ const AlertsPage: React.FC = () => {
         {!notificationsLoading && notifications.length > 0 ? (
           <div className="overflow-x-auto">
             <table className="w-full min-w-[680px] text-left text-sm">
-              <thead className="border-b border-border/60 text-xs uppercase text-muted-text">
+              <thead className="border-b border-divider/60 text-xs uppercase text-muted-text">
                 <tr>
                   <th className="px-3 py-2 font-medium">渠道</th>
                   <th className="px-3 py-2 font-medium">状态</th>
@@ -343,7 +343,7 @@ const AlertsPage: React.FC = () => {
                   <th className="px-3 py-2 font-medium">诊断</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-border/40">
+              <tbody className="divide-y divide-divider/40">
                 {notifications.map((notification) => (
                   <tr key={notification.id}>
                     <td className="px-3 py-3">{formatNotificationChannel(notification.channel)}</td>

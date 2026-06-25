@@ -400,7 +400,7 @@ export const MarketReviewReportView: React.FC<MarketReviewReportViewProps> = ({
 
   return (
     <div className={`animate-fade-in space-y-4 pb-8 ${className}`}>
-      <Card variant="gradient" padding="md" className="home-report-hero text-left">
+      <Card variant="default" padding="md" className="home-report-hero text-left">
         <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
           <div className="min-w-0">
             <div className="mb-2 inline-flex items-center gap-2 text-xs font-semibold text-secondary-text">
@@ -478,7 +478,7 @@ export const MarketReviewReportView: React.FC<MarketReviewReportViewProps> = ({
       {summary ? (
         <div className="grid grid-cols-1 gap-3 md:grid-cols-2 xl:grid-cols-4">
           {insightCards.map(({ icon: Icon, label, value }) => (
-            <Card key={label} variant="bordered" padding="sm" className="home-panel-card text-left">
+            <Card key={label} variant="default" padding="sm" className="home-panel-card text-left">
               <div className="flex items-start gap-3">
                 <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary">
                   <Icon className="h-4 w-4" aria-hidden="true" />
@@ -494,7 +494,7 @@ export const MarketReviewReportView: React.FC<MarketReviewReportViewProps> = ({
       ) : null}
 
       {structuredMarketData.length > 0 ? (
-        <Card variant="bordered" padding="md" className="home-panel-card text-left">
+        <Card variant="default" padding="md" className="home-panel-card text-left">
           <div className="mb-3 flex items-center gap-2">
             <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary">
               <BarChart3 className="h-4 w-4" aria-hidden="true" />
@@ -626,14 +626,14 @@ export const MarketReviewReportView: React.FC<MarketReviewReportViewProps> = ({
       ) : null}
 
       {isLoading ? (
-        <Card variant="bordered" padding="md" className="home-panel-card text-left">
+        <Card variant="default" padding="md" className="home-panel-card text-left">
           <div className="flex h-64 flex-col items-center justify-center">
             <div className="home-spinner h-10 w-10 animate-spin border-[3px]" />
             <p className="mt-4 text-sm text-secondary-text">{text.loadingReport}</p>
           </div>
         </Card>
       ) : error ? (
-        <Card variant="bordered" padding="md" className="home-panel-card text-left">
+        <Card variant="default" padding="md" className="home-panel-card text-left">
           <div className="flex h-64 flex-col items-center justify-center">
             <div className="mb-3 flex h-12 w-12 items-center justify-center rounded-xl bg-danger/10">
               <ShieldAlert className="h-6 w-6 text-danger" aria-hidden="true" />
@@ -644,7 +644,7 @@ export const MarketReviewReportView: React.FC<MarketReviewReportViewProps> = ({
       ) : (
         <div data-testid="market-review-report" className="space-y-4">
           {sections.map(({ id, title, content: sectionContent, icon: Icon }) => (
-            <Card key={id} variant="bordered" padding="md" className="home-panel-card text-left">
+            <Card key={id} variant="default" padding="md" className="home-panel-card text-left">
               <div className="mb-3 flex items-center gap-2">
                 <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary">
                   <Icon className="h-4 w-4" aria-hidden="true" />

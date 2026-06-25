@@ -3,39 +3,28 @@ import { useUiLanguage } from '../../contexts/UiLanguageContext';
 import { cn } from '../../utils/cn';
 
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  variant?: 'primary' | 'secondary' | 'outline' | 'ghost' | 'gradient' | 'danger' | 'danger-subtle' | 'settings-primary' | 'settings-secondary' | 'action-primary' | 'action-secondary' | 'home-action-ai' | 'home-action-report';
+  variant?: 'primary' | 'secondary' | 'outline' | 'ghost' | 'danger' | 'danger-subtle';
   size?: 'xsm' | 'sm' | 'md' | 'lg' | 'xl';
   isLoading?: boolean;
   /** Custom loading text. */
   loadingText?: string;
-  glow?: boolean;
 }
 
 const BUTTON_SIZE_STYLES = {
-  xsm: 'h-6 rounded-lg px-2 text-sm',
-  sm: 'h-9 rounded-lg px-3 text-sm',
-  md: 'h-10 rounded-xl px-4 text-sm',
-  lg: 'h-11 rounded-xl px-5 text-sm',
-  xl: 'h-12 rounded-xl px-6 text-sm',
+  xsm: 'h-6 rounded-full px-2.5 text-label',
+  sm: 'h-7 rounded-full px-3 text-body-sm',
+  md: 'h-9 rounded-full px-4 text-body',
+  lg: 'h-10 rounded-full px-5 text-body',
+  xl: 'h-11 rounded-full px-6 text-body',
 } as const;
 
-const ACTION_AI_STYLES = 'bg-[var(--home-action-ai-bg)] border border-[var(--home-action-ai-border)] text-[var(--home-action-ai-text)] hover:bg-[var(--home-action-ai-hover-bg)]';
-const ACTION_REPORT_STYLES = 'bg-[var(--home-action-report-bg)] border border-[var(--home-action-report-border)] text-[var(--home-action-report-text)] hover:bg-[var(--home-action-report-hover-bg)]';
-
 const BUTTON_VARIANT_STYLES = {
-  primary: 'border border-cyan/30 bg-primary-gradient text-primary-foreground shadow-lg shadow-cyan/20 hover:brightness-105',
-  secondary: 'border border-border/70 bg-card text-foreground shadow-soft-card hover:bg-hover',
-  'settings-primary': 'border settings-button-primary hover:brightness-105 hover:shadow-xl',
-  'settings-secondary': 'border settings-button-secondary hover:translate-y-[-1px]',
-  outline: 'border border-cyan/25 bg-transparent text-cyan hover:bg-cyan/10',
-  ghost: 'border border-transparent bg-transparent text-secondary-text hover:bg-hover hover:text-foreground',
-  gradient: 'border border-cyan/20 bg-gradient-to-r from-cyan to-purple text-primary-foreground shadow-lg shadow-cyan/20 hover:brightness-105',
-  danger: 'border border-danger/40 bg-danger text-destructive-foreground shadow-lg shadow-danger/20 hover:brightness-105',
-  'danger-subtle': 'border border-danger/60 bg-danger/10 text-danger hover:bg-danger/15',
-  'action-primary': ACTION_AI_STYLES,
-  'action-secondary': ACTION_REPORT_STYLES,
-  'home-action-ai': ACTION_AI_STYLES,
-  'home-action-report': ACTION_REPORT_STYLES,
+  primary: 'border border-accent bg-accent text-on-accent hover:brightness-90 active:scale-95',
+  secondary: 'border border-divider bg-surface hover:bg-surface-2 active:scale-95',
+  outline: 'border border-accent/30 bg-transparent text-accent hover:bg-accent/8 active:scale-95',
+  ghost: 'border border-transparent bg-transparent text-ink-muted hover:bg-surface-2 active:scale-95',
+  danger: 'border border-negative/40 bg-negative text-white hover:brightness-90 active:scale-95',
+  'danger-subtle': 'border border-negative/50 bg-negative/10 text-negative hover:bg-negative/15 active:scale-95',
 } as const;
 
 /**
@@ -47,14 +36,12 @@ export const Button: React.FC<ButtonProps> = ({
   size = 'md',
   isLoading = false,
   loadingText,
-  glow = false,
   className = '',
   disabled,
   type = 'button',
   ...props
 }) => {
   const { t } = useUiLanguage();
-  const glowStyles = glow ? 'shadow-glow-cyan settings-glow-cyan-hover' : '';
 
   return (
     <button
@@ -63,11 +50,10 @@ export const Button: React.FC<ButtonProps> = ({
       data-variant={variant}
       className={cn(
         'inline-flex cursor-pointer items-center justify-center gap-2 font-medium transition-all duration-200',
-        'focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-cyan/15 focus-visible:ring-offset-0',
+        'focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-accent/30 focus-visible:ring-offset-0',
         'disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50 disabled:transform-none',
         BUTTON_SIZE_STYLES[size],
         BUTTON_VARIANT_STYLES[variant],
-        glowStyles,
         className,
       )}
       disabled={disabled || isLoading}

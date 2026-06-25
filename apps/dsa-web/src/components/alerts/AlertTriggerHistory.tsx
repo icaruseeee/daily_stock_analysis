@@ -49,7 +49,7 @@ interface AlertTriggerHistoryProps {
 
 export const AlertTriggerHistory: React.FC<AlertTriggerHistoryProps> = ({ triggers, isLoading = false }) => {
   return (
-    <Card title="触发历史" subtitle="评估记录" variant="bordered" padding="md">
+    <Card title="触发历史" subtitle="评估记录" variant="default" padding="md">
       {isLoading ? <Loading label="正在加载触发历史" /> : null}
       {!isLoading && triggers.length === 0 ? (
         <EmptyState
@@ -61,7 +61,7 @@ export const AlertTriggerHistory: React.FC<AlertTriggerHistoryProps> = ({ trigge
       {!isLoading && triggers.length > 0 ? (
         <div className="overflow-x-auto">
           <table className="w-full min-w-[860px] text-left text-sm">
-            <thead className="border-b border-border/60 text-xs uppercase text-muted-text">
+            <thead className="border-b border-divider/60 text-xs uppercase text-muted-text">
               <tr>
                 <th className="px-3 py-2 font-medium">状态</th>
                 <th className="px-3 py-2 font-medium">阶段 / 质量</th>
@@ -73,7 +73,7 @@ export const AlertTriggerHistory: React.FC<AlertTriggerHistoryProps> = ({ trigge
                 <th className="px-3 py-2 font-medium">原因</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-border/40">
+            <tbody className="divide-y divide-divider/40">
               {triggers.map((trigger) => (
                 <tr key={trigger.id} className="align-top">
                   <td className="px-3 py-3">

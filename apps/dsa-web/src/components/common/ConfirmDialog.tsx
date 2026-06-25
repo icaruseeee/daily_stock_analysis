@@ -45,7 +45,7 @@ export const ConfirmDialog: React.FC<ConfirmDialogProps> = ({
       }}
     >
       <div
-        className="mx-4 w-full max-w-sm rounded-xl border border-border/70 bg-elevated p-6 shadow-2xl animate-in fade-in zoom-in duration-200"
+        className="mx-4 w-full max-w-sm rounded-xl border border-divider/70 bg-elevated p-6  animate-in fade-in zoom-in duration-200"
         onClick={(e) => e.stopPropagation()}
       >
         <h3 className="mb-2 text-lg font-medium text-foreground">{title}</h3>
@@ -57,7 +57,7 @@ export const ConfirmDialog: React.FC<ConfirmDialogProps> = ({
             type="button"
             onClick={onCancel}
             disabled={cancelDisabled}
-            className="rounded-lg border border-border/70 px-4 py-2 text-sm font-medium text-secondary-text transition-colors hover:bg-hover hover:text-foreground disabled:cursor-not-allowed disabled:opacity-60"
+            className="rounded-lg border border-divider/70 px-4 py-2 text-sm font-medium text-secondary-text transition-colors hover:bg-hover hover:text-foreground disabled:cursor-not-allowed disabled:opacity-60"
           >
             {cancelText ?? t('common.cancel')}
           </button>
@@ -67,8 +67,8 @@ export const ConfirmDialog: React.FC<ConfirmDialogProps> = ({
             disabled={confirmDisabled}
             className={`rounded-lg px-4 py-2 text-sm font-medium text-foreground transition-colors ${
               isDanger
-                ? 'bg-red-500/80 hover:bg-red-500 shadow-lg shadow-red-500/20'
-                : 'bg-cyan/80 hover:bg-cyan shadow-lg shadow-cyan/20'
+                ? 'bg-red-500/80 hover:bg-red-500  shadow-red-500/20'
+                : 'bg-cyan/80 hover:bg-cyan  shadow-cyan/20'
             } disabled:cursor-not-allowed disabled:opacity-60`}
           >
             {confirmText ?? t('common.confirm')}

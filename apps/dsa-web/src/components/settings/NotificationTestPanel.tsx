@@ -100,7 +100,7 @@ export const NotificationTestPanel: React.FC<NotificationTestPanelProps> = ({
       actions={(
         <Button
           type="button"
-          variant="settings-primary"
+          variant="primary"
           size="sm"
           onClick={() => void runTest()}
           disabled={disabled || isTesting}

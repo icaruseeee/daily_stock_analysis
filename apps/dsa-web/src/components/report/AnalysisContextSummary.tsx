@@ -220,7 +220,7 @@ export const AnalysisContextSummary: React.FC<AnalysisContextSummaryProps> = ({
   const limitations = quality?.limitations?.map((item) => formatLimitation(item, reportLanguage, text)) || [];
 
   return (
-    <Card variant="bordered" padding="none" className="home-panel-card">
+    <Card variant="default" padding="none" className="home-panel-card">
       <details data-testid="analysis-context-summary" className="group">
         <summary className="flex cursor-pointer list-none items-center justify-between gap-3 px-4 py-3">
           <div className="flex min-w-0 items-center gap-3">

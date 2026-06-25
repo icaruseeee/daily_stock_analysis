@@ -17,11 +17,11 @@ interface StatCardProps {
 }
 
 const toneStyles = {
-  default: 'border-subtle',
-  primary: 'border-cyan/18',
-  success: 'border-success/18',
-  warning: 'border-warning/18',
-  danger: 'border-danger/18',
+  default: 'border-divider',
+  primary: 'border-l-[3px] border-l-accent border-t border-r border-b border-divider',
+  success: 'border-l-[3px] border-l-positive border-t border-r border-b border-divider',
+  warning: 'border-l-[3px] border-l-caution border-t border-r border-b border-divider',
+  danger: 'border-l-[3px] border-l-negative border-t border-r border-b border-divider',
 };
 
 export const StatCard: React.FC<StatCardProps> = ({
@@ -33,14 +33,14 @@ export const StatCard: React.FC<StatCardProps> = ({
   className = '',
 }) => {
   return (
-    <div className={cn('rounded-2xl border bg-card/75 p-4 shadow-soft-card', toneStyles[tone], className)}>
+    <div className={cn('rounded-lg border bg-surface p-4', toneStyles[tone], className)}>
       <div className="flex items-start justify-between gap-3">
         <div>
-          <p className="text-xs uppercase tracking-[0.22em] text-secondary-text">{label}</p>
-          <div className="mt-2 text-2xl font-semibold text-foreground">{value}</div>
-          {hint ? <div className="mt-2 text-sm text-secondary-text">{hint}</div> : null}
+          <p className="text-label uppercase tracking-[0.05em] text-ink-muted">{label}</p>
+          <div className="mt-2 text-2xl font-semibold">{value}</div>
+          {hint ? <div className="mt-2 text-body-sm text-ink-muted">{hint}</div> : null}
         </div>
-        {icon ? <div className="text-cyan">{icon}</div> : null}
+        {icon ? <div className="text-accent">{icon}</div> : null}
       </div>
     </div>
   );

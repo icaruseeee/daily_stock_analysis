@@ -154,7 +154,7 @@ const ChatPage: React.FC = () => {
   const [input, setInput] = useState('');
   const [skills, setSkills] = useState<SkillInfo[]>([]);
   const [selectedSkillIds, setSelectedSkillIds] = useState<string[]>([]);
-  const [showSkillDesc, setShowSkillDesc] = useState<string | null>(null);
+
   const [mobileSkillPickerOpen, setMobileSkillPickerOpen] = useState(false);
   const [expandedThinking, setExpandedThinking] = useState<Set<string>>(new Set());
   const [deleteConfirmId, setDeleteConfirmId] = useState<string | null>(null);
@@ -724,7 +724,7 @@ const ChatPage: React.FC = () => {
   };
 
   const renderThinkingDetails = (steps: ProgressStep[]) => (
-    <div className="mb-3 pl-5 border-l border-border/40 space-y-1.5 animate-fade-in">
+    <div className="mb-3 pl-5 border-l border-divider/40 space-y-1.5 animate-fade-in">
       {steps.map((step, idx) => {
         let statusClass = 'chat-progress-item-muted';
         let iconClass = 'chat-progress-dot-muted';
@@ -761,7 +761,7 @@ const ChatPage: React.FC = () => {
 
   const sidebarContent = (
     <>
-      <div className="flex items-center justify-between border-b border-white/5 bg-white/2 p-3.5">
+      <div className="flex items-center justify-between border-b border-divider/50 bg-white/2 p-3.5">
         <h2 className="text-sm font-semibold text-cyan uppercase tracking-[0.2em] flex items-center gap-2">
           <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
@@ -794,14 +794,14 @@ const ChatPage: React.FC = () => {
             loading
             compact
             title="加载对话中..."
-            className="rounded-2xl border border-dashed border-border/50 bg-surface/30"
+            className="rounded-2xl border  border-divider/50 bg-surface/30"
           />
         ) : sessions.length === 0 ? (
           <DashboardStateBlock
             compact
             title="暂无历史对话"
             description="开始提问后，这里会保留会话记录。"
-            className="rounded-2xl border border-dashed border-border/50 bg-surface/30"
+            className="rounded-2xl border  border-divider/50 bg-surface/30"
           />
         ) : (
           <div className="space-y-2">
@@ -872,7 +872,7 @@ const ChatPage: React.FC = () => {
       className="flex h-[calc(100vh-5rem)] w-full min-w-0 gap-4 overflow-hidden sm:h-[calc(100vh-5.5rem)] lg:h-[calc(100vh-2rem)]"
     >
       {/* Desktop sidebar */}
-      <div className="hidden h-full w-64 flex-shrink-0 flex-col overflow-hidden rounded-[1.25rem] border border-white/8 bg-card/82 shadow-soft-card md:flex">
+      <div className="hidden h-full w-64 flex-shrink-0 flex-col overflow-hidden rounded-[1.25rem] border border-divider/70 bg-card/82  md:flex">
         {sidebarContent}
       </div>
 
@@ -884,7 +884,7 @@ const ChatPage: React.FC = () => {
         >
           <div className="page-drawer-overlay absolute inset-0" />
           <div
-            className="absolute left-0 top-0 bottom-0 w-72 flex flex-col glass-card overflow-hidden border-r border-white/10 bg-card/90 shadow-2xl"
+            className="absolute left-0 top-0 bottom-0 w-72 flex flex-col glass-card overflow-hidden border-r border-divider/70 bg-card/90 "
             onClick={(e) => e.stopPropagation()}
           >
             {sidebarContent}
@@ -908,7 +908,7 @@ const ChatPage: React.FC = () => {
       <div className="flex h-full min-w-0 flex-1 flex-col overflow-hidden">
         <header className="mb-4 flex-shrink-0 space-y-3">
           <div className="flex items-start justify-between gap-4">
-            <h1 className="text-2xl font-bold text-foreground flex items-center gap-2">
+            <h1 className="text-2xl font-semibold tracking-tight flex items-center gap-2">
               <button
                 onClick={() => setSidebarOpen(true)}
                 className="md:hidden p-1.5 -ml-1 rounded-lg hover:bg-hover transition-colors text-secondary-text hover:text-foreground"
@@ -948,7 +948,7 @@ const ChatPage: React.FC = () => {
                 <Tooltip content="导出会话为 Markdown 文件">
                   <span className="inline-flex">
                     <Button
-                      variant="action-primary"
+                      variant="primary"
                       size="sm"
                       onClick={() => downloadSession(messages)}
                       aria-label="导出会话为 Markdown 文件"
@@ -973,7 +973,7 @@ const ChatPage: React.FC = () => {
                 <Tooltip content="发送到已配置的通知机器人/邮箱">
                   <span className="inline-flex">
                     <Button
-                      variant="action-primary"
+                      variant="primary"
                       size="sm"
                       disabled={sending}
                       onClick={async () => {
@@ -1051,7 +1051,7 @@ const ChatPage: React.FC = () => {
           ) : null}
         </header>
 
-        <div className="relative z-10 flex min-h-0 flex-1 flex-col overflow-hidden border border-white/6 bg-card/78 glass-card">
+        <div className="relative z-10 flex min-h-0 flex-1 flex-col overflow-hidden border border-divider/60 bg-card/78 glass-card">
           {/* Messages */}
           <ScrollArea
             className="relative z-10 flex-1"
@@ -1065,7 +1065,7 @@ const ChatPage: React.FC = () => {
                 <EmptyState
                   title="开始问股"
                   description="输入「分析 600519」或「茅台现在能买吗」，AI 将调用实时数据工具为您生成决策报告。"
-                  className="max-w-2xl border-dashed bg-card/55"
+                  className="max-w-2xl border  border-divider bg-card/55"
                   icon={(
                     <svg
                       className="h-8 w-8"
@@ -1106,7 +1106,7 @@ const ChatPage: React.FC = () => {
                 >
                   <div
                     className={cn(
-                      'flex h-8 w-8 shrink-0 items-center justify-center rounded-full text-[10px] font-bold shadow-sm transition-all',
+                      'flex h-8 w-8 shrink-0 items-center justify-center rounded-full text-[10px] font-bold  transition-all',
                       msg.role === 'user' ? 'chat-avatar-user' : 'chat-avatar-ai'
                     )}
                   >
@@ -1192,11 +1192,11 @@ const ChatPage: React.FC = () => {
                 <div className="w-8 h-8 rounded-full bg-elevated text-foreground flex items-center justify-center flex-shrink-0 text-xs font-bold">
                   AI
                 </div>
-                <div className="min-w-[200px] max-w-[min(100%,48rem)] overflow-hidden rounded-2xl rounded-tl-sm border border-white/6 bg-card/72 px-5 py-4">
+                <div className="min-w-[200px] max-w-[min(100%,48rem)] overflow-hidden rounded-2xl rounded-tl-sm border border-divider/60 bg-card/72 px-5 py-4">
                   <div className="flex items-center gap-2.5 text-sm text-secondary-text">
                     <div className="relative w-4 h-4 flex-shrink-0">
-                      <div className="absolute inset-0 rounded-full border-2 border-cyan/20" />
-                      <div className="absolute inset-0 rounded-full border-2 border-cyan border-t-transparent animate-spin" />
+                      <div className="absolute inset-0 rounded-full border-2 border-accent/20" />
+                      <div className="absolute inset-0 rounded-full border-2 border-accent border-t-transparent animate-spin" />
                     </div>
                     <span className="text-secondary-text">
                       {getCurrentStage(progressSteps)}
@@ -1213,7 +1213,7 @@ const ChatPage: React.FC = () => {
             <div className="pointer-events-none absolute bottom-[5.75rem] right-4 z-20 md:bottom-24 md:right-6">
               <button
                 type="button"
-                className="pointer-events-auto chat-copy-btn shadow-soft-card"
+                className="pointer-events-auto chat-copy-btn "
                 onClick={() => {
                   requestScrollToBottom('smooth');
                   scrollToBottom('smooth');
@@ -1239,7 +1239,7 @@ const ChatPage: React.FC = () => {
           )}
 
           {/* Input area */}
-          <div className="border-t border-white/6 bg-card/88 p-4 md:p-6 relative z-20">
+          <div className="border-t border-divider/60 bg-card/88 p-4 md:p-6 relative z-20">
             <div className="space-y-3">
               {chatError ? <ApiErrorAlert error={chatError} /> : null}
               {isFollowUpContextLoading ? (
@@ -1250,7 +1250,7 @@ const ChatPage: React.FC = () => {
                   className="rounded-xl px-3 py-2 text-xs shadow-none"
                 />
               ) : null}
-              <div className="flex flex-wrap items-center justify-between gap-3 rounded-xl border border-white/6 bg-surface/25 px-3 py-2">
+              <div className="flex flex-wrap items-center justify-between gap-3 rounded-xl border border-divider/60 bg-surface/25 px-3 py-2">
                 <label
                   className={cn(
                     'inline-flex items-center gap-2 text-sm',
@@ -1313,7 +1313,7 @@ const ChatPage: React.FC = () => {
                     data-testid="chat-skill-picker-panel"
                     className={cn(
                       mobileSkillPickerOpen ? 'flex' : 'hidden',
-                      'max-h-40 flex-wrap items-start gap-x-5 gap-y-2 overflow-y-auto rounded-xl border border-white/6 bg-surface/25 px-3 py-2 md:flex md:max-h-none md:overflow-visible md:border-0 md:bg-transparent md:p-0',
+                      'max-h-40 flex-wrap items-start gap-x-5 gap-y-2 overflow-y-auto rounded-xl border border-divider/60 bg-surface/25 px-3 py-2 md:flex md:max-h-none md:overflow-visible md:border-0 md:bg-transparent md:p-0',
                     )}
                   >
                     <span className="text-xs text-muted-text font-medium uppercase tracking-wider flex-shrink-0 mt-1">
@@ -1338,33 +1338,35 @@ const ChatPage: React.FC = () => {
                       const checked = selectedSkillIdSet.has(s.id);
                       const disabled = !checked && skillLimitReached;
                       return (
-                        <label
+                        <Tooltip
                           key={s.id}
-                          className={`flex items-center gap-1.5 cursor-pointer group relative mt-0.5 ${disabled ? 'opacity-60 cursor-not-allowed' : ''}`}
-                          onMouseEnter={() => setShowSkillDesc(s.id)}
-                          onMouseLeave={() => setShowSkillDesc(null)}
-                        >
-                          <input
-                            type="checkbox"
-                            name="skills"
-                            value={s.id}
-                            checked={checked}
-                            disabled={disabled}
-                            onChange={() => toggleSkillSelection(s.id)}
-                            className="chat-skill-checkbox"
-                          />
-                          <span
-                            className={`transition-colors text-sm ${checked ? 'text-foreground font-medium' : 'text-secondary-text group-hover:text-foreground'}`}
-                          >
-                            {s.name}
-                          </span>
-                          {showSkillDesc === s.id && s.description && (
-                            <div className="skill-desc-tooltip">
-                              <p className="skill-title">{s.name}</p>
-                              <p>{s.description}</p>
+                          content={s.description ? (
+                            <div>
+                              <p className="mb-1 text-xs font-semibold">{s.name}</p>
+                              <p className="text-xs opacity-85">{s.description}</p>
                             </div>
-                          )}
-                        </label>
+                          ) : null}
+                          className={cn('group', disabled ? 'opacity-60' : '')}
+                        >
+                          <label
+                            className={`flex items-center gap-1.5 cursor-pointer mt-0.5 ${disabled ? 'pointer-events-none' : ''}`}
+                          >
+                            <input
+                              type="checkbox"
+                              name="skills"
+                              value={s.id}
+                              checked={checked}
+                              disabled={disabled}
+                              onChange={() => toggleSkillSelection(s.id)}
+                              className="chat-skill-checkbox"
+                            />
+                            <span
+                              className={`transition-colors text-sm ${checked ? 'text-foreground font-medium' : 'text-secondary-text group-hover:text-foreground'}`}
+                            >
+                              {s.name}
+                            </span>
+                          </label>
+                        </Tooltip>
                       );
                     })}
                   </div>

@@ -136,7 +136,7 @@ const MetricCard: React.FC<{ label: string; value: React.ReactNode; hint?: strin
   hint,
   title,
 }) => (
-  <div className="rounded-xl border border-border/70 bg-background/45 px-4 py-3">
+  <div className="rounded-xl border border-divider/70 bg-background/45 px-4 py-3">
     <p className="text-xs text-secondary-text">{label}</p>
     <p className="mt-1 truncate text-lg font-semibold text-foreground" title={title}>
       {value}
@@ -160,8 +160,8 @@ const RangeControls: React.FC<{
           onClick={() => onRangeChange(option.value)}
           className={`rounded-lg border px-3 py-1.5 text-xs font-medium transition-colors ${
             filters.range === option.value
-              ? 'border-primary/50 bg-primary/10 text-primary'
-              : 'border-border/70 bg-background/50 text-secondary-text hover:bg-hover hover:text-foreground'
+              ? 'border-accent/50 bg-primary/10 text-primary'
+              : 'border-divider/70 bg-background/50 text-secondary-text hover:bg-hover hover:text-foreground'
           }`}
         >
           {t(option.labelKey)}
@@ -201,7 +201,7 @@ export const StockHistoryTrendDrawer: React.FC<StockHistoryTrendDrawerProps> = (
 
   return (
     <div className="space-y-4 animate-fade-in">
-      <Card variant="gradient" padding="md" className="home-panel-card">
+      <Card variant="default" padding="md" className="home-panel-card">
         <div className="flex flex-wrap items-start justify-between gap-4">
           <div className="flex items-start gap-3">
             <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-primary/12 text-primary">
@@ -235,7 +235,7 @@ export const StockHistoryTrendDrawer: React.FC<StockHistoryTrendDrawerProps> = (
           )}
         />
       ) : items.length === 0 ? (
-        <Card variant="bordered" padding="md" className="home-panel-card">
+        <Card variant="default" padding="md" className="home-panel-card">
           <div className="flex flex-wrap items-center justify-between gap-3">
             <div>
               <h3 className="text-base font-semibold text-foreground">{t('stockTrend.moreEmptyTitle')}</h3>
@@ -268,7 +268,7 @@ export const StockHistoryTrendDrawer: React.FC<StockHistoryTrendDrawerProps> = (
             />
           </div>
 
-          <Card variant="bordered" padding="md" className="home-panel-card">
+          <Card variant="default" padding="md" className="home-panel-card">
             <div className="flex flex-wrap items-center justify-between gap-3">
               <div>
                 <h3 className="text-base font-semibold text-foreground">{t('stockTrend.records')}</h3>
@@ -292,7 +292,7 @@ export const StockHistoryTrendDrawer: React.FC<StockHistoryTrendDrawerProps> = (
               </div>
             </div>
 
-            <div className="mt-4 overflow-hidden rounded-xl border border-border/60 bg-card/30">
+            <div className="mt-4 overflow-hidden rounded-xl border border-divider/60 bg-card/30">
               <table className="w-full table-fixed text-left text-sm">
                 <colgroup>
                   <col className="w-[15%]" />
@@ -305,7 +305,7 @@ export const StockHistoryTrendDrawer: React.FC<StockHistoryTrendDrawerProps> = (
                   <col className="w-[22%]" />
                   <col className="w-[11%]" />
                 </colgroup>
-                <thead className="border-b border-border/60 bg-background/35 text-xs text-secondary-text">
+                <thead className="border-b border-divider/60 bg-background/35 text-xs text-secondary-text">
                   <tr>
                     <th className="whitespace-nowrap px-4 py-3 font-medium">{t('stockTrend.time')}</th>
                     <th className="whitespace-nowrap px-4 py-3 font-medium">{t('stockTrend.result')}</th>
@@ -318,7 +318,7 @@ export const StockHistoryTrendDrawer: React.FC<StockHistoryTrendDrawerProps> = (
                     <th className="whitespace-nowrap px-4 py-3 font-medium">{t('stockTrend.table.action')}</th>
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-border/55">
+                <tbody className="divide-y divide-divider/55">
                   {items.map((item) => {
                     const isSelected = item.id === selectedRecordId;
                     const sentimentColor = isPresent(item.sentimentScore)
@@ -368,7 +368,7 @@ export const StockHistoryTrendDrawer: React.FC<StockHistoryTrendDrawerProps> = (
                         <td className="px-3 py-3">
                           <button
                             type="button"
-                            className="rounded-lg border border-primary/35 bg-primary/8 px-2.5 py-1 text-xs font-medium text-primary transition-colors hover:bg-primary/14"
+                            className="rounded-lg border border-accent/35 bg-primary/8 px-2.5 py-1 text-xs font-medium text-primary transition-colors hover:bg-primary/14"
                             onClick={(event) => {
                               event.stopPropagation();
                               onSelectRecord(item.id);

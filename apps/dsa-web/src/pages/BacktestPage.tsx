@@ -79,9 +79,9 @@ function outcomeBadge(outcome: string | undefined, language: UiLanguage) {
   if (!outcome) return <Badge variant="default">--</Badge>;
   switch (outcome) {
     case 'win':
-      return <Badge variant="success" glow>{labels.win}</Badge>;
+      return <Badge variant="success">{labels.win}</Badge>;
     case 'loss':
-      return <Badge variant="danger" glow>{labels.loss}</Badge>;
+      return <Badge variant="danger">{labels.loss}</Badge>;
     case 'neutral':
       return <Badge variant="warning">{labels.neutral}</Badge>;
     default:
@@ -185,7 +185,7 @@ const PerformanceCard: React.FC<{ metrics: PerformanceMetrics; title: string; la
   const text = BACKTEST_TEXT[language];
   const phaseText = phaseBreakdownText(metrics, language);
   return (
-    <Card variant="gradient" padding="md" className="animate-fade-in">
+    <Card variant="default" padding="md" className="animate-fade-in">
       <div className="mb-3">
         <span className="label-uppercase">{title}</span>
       </div>
@@ -213,7 +213,7 @@ const PerformanceCard: React.FC<{ metrics: PerformanceMetrics; title: string; la
         </span>
       </div>
       {phaseText ? (
-        <div className="mt-3 border-t border-white/10 pt-2 text-xs text-muted-text">
+        <div className="mt-3 border-t border-divider/70 pt-2 text-xs text-muted-text">
           {formatUiText(text.phaseDistribution, { text: phaseText })}
         </div>
       ) : null}
@@ -437,7 +437,7 @@ const BacktestPage: React.FC = () => {
   return (
     <div className="min-h-full flex flex-col rounded-[1.5rem] bg-transparent">
       {/* Header */}
-      <header className="flex-shrink-0 border-b border-white/5 px-3 py-3 sm:px-4">
+      <header className="flex-shrink-0 border-b border-divider/50 px-3 py-3 sm:px-4">
         <div className="flex max-w-5xl flex-wrap items-center gap-2">
           <div className="relative min-w-0 flex-[1_1_220px]">
             <input
@@ -561,7 +561,7 @@ const BacktestPage: React.FC = () => {
       </header>
 
       {/* Main content */}
-      <main className="flex min-h-0 flex-1 flex-col gap-3 overflow-hidden p-3 lg:flex-row">
+      <main className="flex min-h-0 flex-1 flex-col gap-3 overflow-hidden lg:flex-row">
         {/* Left sidebar - Performance */}
         <div className="flex max-h-[38vh] flex-col gap-3 overflow-y-auto lg:max-h-none lg:w-60 lg:flex-shrink-0">
           {isLoadingPerf ? (
@@ -574,7 +574,7 @@ const BacktestPage: React.FC = () => {
             <EmptyState
               title={text.noMetricsTitle}
               description={text.noMetricsDescription}
-              className="h-full min-h-[12rem] border-dashed bg-card/45 shadow-none"
+              className="h-full min-h-[12rem] border  border-divider bg-card/45 shadow-none"
             />
           )}
 
@@ -597,7 +597,7 @@ const BacktestPage: React.FC = () => {
             <EmptyState
               title={text.noResultsTitle}
               description={text.noResultsDescription}
-              className="backtest-empty-state border-dashed"
+              className="border  border-divider"
               icon={(
                 <svg className="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />

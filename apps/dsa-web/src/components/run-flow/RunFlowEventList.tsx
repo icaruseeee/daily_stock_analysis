@@ -111,7 +111,7 @@ export const RunFlowEventList: React.FC<RunFlowEventListProps> = ({
           const content = (
             <div
               className={`w-full rounded-lg border px-3 py-2 text-left transition-colors ${
-                selected ? 'border-primary/70 bg-primary/10' : 'border-subtle bg-base/30 hover:bg-hover/60'
+                selected ? 'border-accent/70 bg-primary/10' : 'border-subtle bg-base/30 hover:bg-hover/60'
               }`}
             >
               <div className="flex flex-wrap items-center gap-2">
@@ -156,7 +156,7 @@ export const RunFlowEventList: React.FC<RunFlowEventListProps> = ({
             </button>
           );
         }) : (
-          <div className="flex min-h-32 flex-col items-center justify-center rounded-lg border border-dashed border-subtle px-4 py-8 text-center text-sm text-secondary-text">
+          <div className="flex min-h-32 flex-col items-center justify-center rounded-lg border  border-subtle px-4 py-8 text-center text-sm text-secondary-text">
             <Filter className="mb-2 h-5 w-5 text-muted-text" aria-hidden="true" />
             {t('runFlow.events.empty')}
           </div>

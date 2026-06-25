@@ -137,7 +137,7 @@ export const AlertRuleList: React.FC<AlertRuleListProps> = ({
     <Card
       title={text.title}
       subtitle={formatUiText(text.subtitle, { total })}
-      variant="bordered"
+      variant="default"
       padding="md"
       className={className}
     >
@@ -171,7 +171,7 @@ export const AlertRuleList: React.FC<AlertRuleListProps> = ({
       ) : (
         <div className="min-h-0 flex-1 overflow-x-auto">
           <table className="w-full min-w-[960px] text-left text-sm">
-            <thead className="border-b border-border/60 text-xs uppercase text-muted-text">
+            <thead className="border-b border-divider/60 text-xs uppercase text-muted-text">
               <tr>
                 <th className="px-3 py-2 font-medium">{text.rule}</th>
                 <th className="px-3 py-2 font-medium">{text.target}</th>
@@ -183,7 +183,7 @@ export const AlertRuleList: React.FC<AlertRuleListProps> = ({
                 <th className="px-3 py-2 text-right font-medium">{text.action}</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-border/40">
+            <tbody className="divide-y divide-divider/40">
               {rules.map((rule) => (
                 <tr key={rule.id} className="align-top">
                   <td className="px-3 py-3">

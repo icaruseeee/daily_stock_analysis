@@ -77,7 +77,7 @@ const ModelUsageCard: React.FC<{ model: UsageModelBreakdown; language: UiLanguag
           <h3 className="truncate text-base font-semibold text-foreground">{model.model}</h3>
           <p className="mt-1 text-xs text-secondary-text">{t('usage.calls', { count: formatNumber(model.calls, language) })}</p>
         </div>
-        <span className="rounded-full border border-cyan/20 bg-cyan/10 px-2 py-1 text-xs text-cyan">
+        <span className="rounded-full border border-accent/20 bg-cyan/10 px-2 py-1 text-xs text-cyan">
           {formatNumber(model.totalTokens, language)} tokens
         </span>
       </div>
@@ -150,7 +150,7 @@ const TokenUsagePage: React.FC = () => {
           description={t('usage.description')}
           actions={(
             <div className="flex flex-wrap items-center gap-2">
-              <div className="inline-flex rounded-xl border border-border/70 bg-card/70 p-1">
+              <div className="inline-flex rounded-xl border border-divider/70 bg-card/70 p-1">
                 {PERIOD_OPTIONS.map((option) => (
                   <button
                     key={option}
@@ -159,7 +159,7 @@ const TokenUsagePage: React.FC = () => {
                     className={cn(
                       'rounded-lg px-3 py-1.5 text-sm transition-colors',
                       period === option
-                        ? 'bg-cyan text-background shadow-soft-card'
+                        ? 'bg-cyan text-background '
                         : 'text-secondary-text hover:bg-hover hover:text-foreground'
                     )}
                   >
@@ -185,7 +185,7 @@ const TokenUsagePage: React.FC = () => {
         {loading && !dashboard ? (
           <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
             {Array.from({ length: 4 }).map((_, index) => (
-              <div key={index} className="h-28 animate-pulse rounded-2xl border border-border/70 bg-card/60" />
+              <div key={index} className="h-28 animate-pulse rounded-2xl border border-divider/70 bg-card/60" />
             ))}
           </div>
         ) : null}
@@ -253,9 +253,9 @@ const TokenUsagePage: React.FC = () => {
                 </div>
                 <Clock3 className="h-5 w-5 text-secondary-text" />
               </div>
-              <div className="overflow-hidden rounded-2xl border border-border/70 bg-card/75 shadow-soft-card">
+              <div className="overflow-hidden rounded-2xl border border-divider/70 bg-card/75 ">
                 <div className="overflow-x-auto">
-                  <table className="min-w-full divide-y divide-border/70 text-sm">
+                  <table className="min-w-full divide-y divide-divider/70 text-sm">
                     <thead className="bg-surface-2/70 text-left text-xs uppercase tracking-[0.16em] text-secondary-text">
                       <tr>
                         <th className="px-4 py-3 font-medium">{t('usage.table.time')}</th>
@@ -266,7 +266,7 @@ const TokenUsagePage: React.FC = () => {
                         <th className="px-4 py-3 text-right font-medium">Total</th>
                       </tr>
                     </thead>
-                    <tbody className="divide-y divide-border/60">
+                    <tbody className="divide-y divide-divider/60">
                       {dashboard.recentCalls.length ? dashboard.recentCalls.map((item) => (
                         <tr key={item.id} className="hover:bg-hover/60">
                           <td className="whitespace-nowrap px-4 py-3 text-secondary-text">{formatDateTime(item.calledAt, language)}</td>

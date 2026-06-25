@@ -42,7 +42,7 @@ export const Select: React.FC<SelectProps> = ({
 
   return (
     <div className={cn('flex flex-col', className)}>
-      {label ? <label htmlFor={resolvedId} className="mb-2 text-sm font-medium text-foreground">{label}</label> : null}
+      {label ? <label htmlFor={resolvedId} className="mb-2 text-body-sm font-medium">{label}</label> : null}
       <div className="relative">
         <select
           id={resolvedId}
@@ -50,7 +50,7 @@ export const Select: React.FC<SelectProps> = ({
           onChange={(e) => onChange(e.target.value)}
           disabled={disabled}
           className={cn(
-            'input-surface input-focus-glow h-11 w-full appearance-none rounded-xl border bg-transparent px-4 py-2.5 pr-10 text-sm text-foreground',
+            'input-surface input-focus-glow h-11 w-full appearance-none rounded-md border px-4 py-2.5 pr-10 text-body-sm',
             'transition-all duration-200 focus:outline-none',
             disabled ? 'cursor-not-allowed opacity-50' : 'cursor-pointer',
           )}
@@ -61,7 +61,7 @@ export const Select: React.FC<SelectProps> = ({
             </option>
           )}
           {options.map((option) => (
-            <option key={option.value} value={option.value} className="bg-elevated text-foreground">
+            <option key={option.value} value={option.value}>
               {option.label}
             </option>
           ))}
@@ -70,7 +70,7 @@ export const Select: React.FC<SelectProps> = ({
         {/* Dropdown arrow */}
         <div className="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
           <svg
-            className="h-4 w-4 text-secondary-text"
+            className="h-4 w-4 text-ink-muted"
             fill="none"
             stroke="currentColor"
             viewBox="0 0 24 24"

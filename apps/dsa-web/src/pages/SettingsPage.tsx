@@ -617,7 +617,7 @@ const SchedulerSettingsCard: React.FC<SchedulerSettingsCardProps> = ({
                 <label className="flex items-start gap-3">
                   <input
                     type="checkbox"
-                    className="mt-1 h-4 w-4 rounded border-border text-cyan focus:ring-cyan/20"
+                    className="mt-1 h-4 w-4 rounded border-divider text-cyan focus:ring-cyan/20"
                     checked={displayedScheduleEnabled}
                     data-testid="scheduler-enabled-checkbox"
                     disabled={disabled || !scheduleEnabledItem?.schema?.isEditable}
@@ -661,7 +661,7 @@ const SchedulerSettingsCard: React.FC<SchedulerSettingsCardProps> = ({
                     {scheduleTimes.length > 1 ? (
                       <Button
                         type="button"
-                        variant="settings-secondary"
+                        variant="secondary"
                         size="sm"
                         className="h-8 w-8 rounded-lg px-0"
                         aria-label={t('settings.schedulerRemoveTime')}
@@ -678,7 +678,7 @@ const SchedulerSettingsCard: React.FC<SchedulerSettingsCardProps> = ({
                 ))}
                 <Button
                   type="button"
-                  variant="settings-secondary"
+                  variant="secondary"
                   size="sm"
                   className="h-11 shrink-0"
                   data-testid="scheduler-add-time-button"
@@ -721,7 +721,7 @@ const SchedulerSettingsCard: React.FC<SchedulerSettingsCardProps> = ({
                 </dd>
               </div>
               {status?.lastError ? (
-                <div className="rounded-xl border border-danger/40 bg-danger/10 px-3 py-2">
+                <div className="rounded-xl border border-negative/40 bg-danger/10 px-3 py-2">
                   <dt className="text-danger">{t('settings.schedulerLastError')}</dt>
                   <dd data-testid="scheduler-last-error" className="mt-1 break-words text-danger">{status.lastError}</dd>
                 </div>
@@ -730,7 +730,7 @@ const SchedulerSettingsCard: React.FC<SchedulerSettingsCardProps> = ({
             <div className="flex flex-wrap items-center gap-2">
               <Button
                 type="button"
-                variant="settings-secondary"
+                variant="secondary"
                 size="sm"
                 data-testid="scheduler-refresh-status-button"
                 disabled={disabled || isRefreshingStatus}
@@ -743,7 +743,7 @@ const SchedulerSettingsCard: React.FC<SchedulerSettingsCardProps> = ({
               </Button>
               <Button
                 type="button"
-                variant="settings-primary"
+                variant="primary"
                 size="sm"
                 data-testid="scheduler-run-now-button"
                 disabled={disabled || isRunningNow}
@@ -1299,7 +1299,7 @@ const SettingsPage: React.FC = () => {
         />
       ))}
       {promptCacheAdvancedItems.length ? (
-        <details className="group/prompt-cache rounded-[1.15rem] border border-[var(--settings-border)] bg-[var(--settings-surface)] p-4 shadow-soft-card transition-[background-color,border-color,box-shadow] duration-200 hover:border-[var(--settings-border-strong)] hover:bg-[var(--settings-surface-hover)]">
+        <details className="group/prompt-cache rounded-[1.15rem] border border-[var(--settings-border)] bg-[var(--settings-surface)] p-4  transition-[background-color,border-color,box-shadow] duration-200 hover:border-[var(--settings-border-divider)] hover:bg-[var(--settings-surface-hover)]">
           <summary className="flex cursor-pointer list-none items-start justify-between gap-3 [&::-webkit-details-marker]:hidden">
             <div className="min-w-0 space-y-1">
               <p className="text-sm font-semibold text-foreground">
@@ -1330,13 +1330,13 @@ const SettingsPage: React.FC = () => {
     <EmptyState
       title={t('settings.currentCategoryEmptyTitle')}
       description={t('settings.currentCategoryEmptyDescription')}
-      className="settings-surface-panel settings-border-strong border-none bg-transparent shadow-none"
+      className="settings-surface-panel settings-border-divider border-none bg-transparent shadow-none"
     />
   );
 
   return (
     <div className="settings-page min-h-full px-4 pb-6 pt-4 md:px-6">
-      <div className="mb-5 rounded-[1.5rem] border settings-border bg-card/94 px-5 py-5 shadow-soft-card-strong backdrop-blur-sm">
+      <div className="mb-5 rounded-[1.5rem] border settings-border bg-card/94 px-5 py-5  backdrop-blur-sm">
         <div className="flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
           <div>
             <h1 className="text-xl font-semibold tracking-tight text-foreground">{t('settings.pageTitle')}</h1>
@@ -1348,7 +1348,7 @@ const SettingsPage: React.FC = () => {
           <div className="flex flex-wrap items-center gap-2">
             <Button
               type="button"
-              variant="settings-secondary"
+              variant="secondary"
               onClick={resetDraft}
               disabled={isLoading || isSaving}
             >
@@ -1356,7 +1356,7 @@ const SettingsPage: React.FC = () => {
             </Button>
               <Button
                 type="button"
-                variant="settings-primary"
+                variant="primary"
                 onClick={() => void handleSaveConfig()}
                 disabled={!effectiveHasDirty || isSaving || isLoading}
                 isLoading={isSaving}
@@ -1439,14 +1439,14 @@ const SettingsPage: React.FC = () => {
                   <div className="flex flex-wrap items-center gap-2">
                     <Button
                       type="button"
-                      variant="settings-secondary"
+                      variant="secondary"
                       onClick={() => setActiveCategory('data_source')}
                     >
                       {t('settings.viewConfigItems')}
                     </Button>
                     <Button
                       type="button"
-                      variant={alphasiftEnabled ? 'settings-secondary' : 'settings-primary'}
+                      variant={alphasiftEnabled ? 'secondary' : 'primary'}
                       onClick={() => void updateAlphaSiftEnabled(!alphasiftEnabled)}
                       disabled={isSaving || isLoading || isUpdatingAlphaSift}
                       isLoading={isUpdatingAlphaSift}
@@ -1538,7 +1538,7 @@ const SettingsPage: React.FC = () => {
                       </div>
                       <Button
                         type="button"
-                        variant="settings-secondary"
+                        variant="secondary"
                         onClick={() => void handleDesktopUpdateCheck()}
                         disabled={isCheckingDesktopUpdate}
                         isLoading={isCheckingDesktopUpdate}
@@ -1589,7 +1589,7 @@ const SettingsPage: React.FC = () => {
                   <div className="flex flex-wrap items-center gap-3">
                     <Button
                       type="button"
-                      variant="settings-secondary"
+                      variant="secondary"
                       onClick={() => void downloadEnvBackup()}
                       disabled={envBackupActionDisabled}
                       isLoading={isExportingEnv}
@@ -1599,7 +1599,7 @@ const SettingsPage: React.FC = () => {
                     </Button>
                     <Button
                       type="button"
-                      variant="settings-primary"
+                      variant="primary"
                       onClick={beginEnvBackupImport}
                       disabled={envBackupActionDisabled}
                       isLoading={isImportingEnv}

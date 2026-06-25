@@ -646,23 +646,23 @@ const DecisionSignalsPage: React.FC = () => {
             <p className="text-sm text-secondary-text">{t('common.loading')}...</p>
           ) : outcomeStats ? (
             <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-5">
-              <div className="rounded-xl border border-border/60 bg-elevated/40 px-3 py-3">
+              <div className="rounded-xl border border-divider/60 bg-elevated/40 px-3 py-3">
                 <p className="text-xs text-secondary-text">{t('decisionSignals.statsTotal')}</p>
                 <p className="mt-1 text-2xl font-semibold text-foreground">{outcomeStats.total}</p>
               </div>
-              <div className="rounded-xl border border-border/60 bg-elevated/40 px-3 py-3">
+              <div className="rounded-xl border border-divider/60 bg-elevated/40 px-3 py-3">
                 <p className="text-xs text-secondary-text">{t('decisionSignals.statsHitRate')}</p>
                 <p className="mt-1 text-2xl font-semibold text-success">{formatStatPercent(outcomeStats.hitRatePct)}</p>
               </div>
-              <div className="rounded-xl border border-border/60 bg-elevated/40 px-3 py-3">
+              <div className="rounded-xl border border-divider/60 bg-elevated/40 px-3 py-3">
                 <p className="text-xs text-secondary-text">{t('decisionSignals.outcome.hit')}</p>
                 <p className="mt-1 text-2xl font-semibold text-success">{outcomeStats.hit}</p>
               </div>
-              <div className="rounded-xl border border-border/60 bg-elevated/40 px-3 py-3">
+              <div className="rounded-xl border border-divider/60 bg-elevated/40 px-3 py-3">
                 <p className="text-xs text-secondary-text">{t('decisionSignals.outcome.miss')}</p>
                 <p className="mt-1 text-2xl font-semibold text-danger">{outcomeStats.miss}</p>
               </div>
-              <div className="rounded-xl border border-border/60 bg-elevated/40 px-3 py-3">
+              <div className="rounded-xl border border-divider/60 bg-elevated/40 px-3 py-3">
                 <p className="text-xs text-secondary-text">{t('decisionSignals.outcome.unable')}</p>
                 <p className="mt-1 text-2xl font-semibold text-warning">{outcomeStats.unable}</p>
               </div>

@@ -271,7 +271,7 @@ export const ReportDiagnostics: React.FC<ReportDiagnosticsProps> = ({
   };
 
   return (
-    <Card variant="bordered" padding="none" className="home-panel-card text-left">
+    <Card variant="default" padding="none" className="home-panel-card text-left">
       <details data-testid="run-diagnostics" className="group">
         <summary className="flex cursor-pointer list-none items-center justify-between gap-3 px-4 py-3">
           <div className="flex min-w-0 items-center gap-3">

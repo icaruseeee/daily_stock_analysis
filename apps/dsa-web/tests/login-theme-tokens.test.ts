@@ -4,44 +4,42 @@ import { readFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 import { describe, expect, it } from 'vitest';
 
-const REQUIRED_LOGIN_TOKENS = [
-  '--login-button-text',
-  '--login-label-text',
-  '--login-hint-text',
-  '--login-input-icon',
-  '--login-input-toggle-bg',
-  '--login-input-toggle-border',
-  '--login-input-toggle-text',
-  '--login-input-toggle-border-hover',
-  '--login-input-toggle-bg-hover',
-  '--login-input-toggle-text-hover',
-  '--login-input-toggle-ring',
-  '--login-input-toggle-active-bg',
-  '--login-input-toggle-active-border',
-  '--login-input-toggle-active-text',
+// Login page migrated to shared Apple-inspired design tokens.
+// These tokens replace the old login-specific theme variables.
+const REQUIRED_DESIGN_TOKENS = [
+  '--primary',
+  '--on-primary',
+  '--body',
+  '--ink-muted-48',
+  '--canvas',
+  '--canvas-parchment',
+  '--hairline',
+  '--status-success',
+  '--status-warning',
+  '--status-danger',
 ];
 
 describe('login theme tokens', () => {
-  it('defines all login-specific tokens in the light theme root block', () => {
+  it('defines shared design tokens used by the login page in the light theme root block', () => {
     const css = readFileSync(resolve(__dirname, '..', 'src', 'index.css'), 'utf8');
     const rootMatch = css.match(/:root\s*\{([\s\S]*?)\n\}/);
 
     expect(rootMatch).not.toBeNull();
     const rootBlock = rootMatch?.[1] ?? '';
 
-    for (const token of REQUIRED_LOGIN_TOKENS) {
+    for (const token of REQUIRED_DESIGN_TOKENS) {
       expect(rootBlock).toContain(token);
     }
   });
 
-  it('defines all login-specific tokens in the dark theme block', () => {
+  it('defines shared design tokens used by the login page in the dark theme block', () => {
     const css = readFileSync(resolve(__dirname, '..', 'src', 'index.css'), 'utf8');
     const darkMatch = css.match(/\.dark\s*\{([\s\S]*?)\n\}/);
 
     expect(darkMatch).not.toBeNull();
     const darkBlock = darkMatch?.[1] ?? '';
 
-    for (const token of REQUIRED_LOGIN_TOKENS) {
+    for (const token of REQUIRED_DESIGN_TOKENS) {
       expect(darkBlock).toContain(token);
     }
   });

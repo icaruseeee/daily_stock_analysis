@@ -227,19 +227,12 @@ describe('ReportOverview', () => {
 
     const actionAdviceTitle = screen.getByText('操作建议');
     const relatedBoardsRegion = screen.getByRole('region', { name: '关联板块' });
-    const boardLists = container.querySelectorAll('.home-related-board-list');
+    const boardList = container.querySelector('.home-related-board-list');
 
     expect(actionAdviceTitle.compareDocumentPosition(relatedBoardsRegion) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
     expect(screen.getByText('关联板块')).toBeInTheDocument();
     expect(screen.getByText('沪股通')).toBeInTheDocument();
-    expect(boardLists[0]).toHaveClass(
-      'flex-nowrap',
-      'overflow-x-auto',
-      'w-full',
-      'min-w-0',
-      'max-w-full',
-      'touch-pan-x',
-    );
+    expect(boardList).toHaveClass('flex-wrap');
   });
 
   it('shows board list when rankings are unavailable', () => {

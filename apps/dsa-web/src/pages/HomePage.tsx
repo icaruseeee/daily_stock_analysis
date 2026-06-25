@@ -693,7 +693,7 @@ const HomePage: React.FC = () => {
       data-testid="home-dashboard"
       className="flex h-[calc(100vh-5rem)] w-full flex-col overflow-hidden md:flex-row sm:h-[calc(100vh-5.5rem)] lg:h-[calc(100vh-2rem)]"
     >
-      <div className="flex-1 flex flex-col min-h-0 min-w-0 max-w-full lg:max-w-6xl mx-auto w-full">
+      <div className="flex-1 flex flex-col min-h-0 min-w-0 w-full">
         <header className="relative z-30 flex min-w-0 flex-shrink-0 items-center overflow-visible px-3 py-3 md:px-4 md:py-4">
           <div className="flex min-w-0 flex-1 flex-col gap-2.5 md:flex-row md:items-center">
             <div className="flex min-w-0 flex-1 items-center gap-2.5">
@@ -715,7 +715,7 @@ const HomePage: React.FC = () => {
                   }}
                   placeholder={t('home.placeholder')}
                   disabled={isAnalyzing}
-                  className={inputError ? 'border-danger/50' : undefined}
+                  className={inputError ? 'border-negative/50' : undefined}
                 />
               </div>
               {analysisSkills.length > 0 ? (
@@ -741,7 +741,7 @@ const HomePage: React.FC = () => {
                       role="menu"
                       aria-labelledby="strategy-menu-button"
                       onKeyDown={handleStrategyMenuKeyDown}
-                      className="absolute right-0 top-11 z-[120] max-h-80 w-[min(18rem,calc(100vw-1.5rem))] overflow-y-auto rounded-xl border border-subtle bg-elevated p-1.5 text-sm text-foreground shadow-2xl"
+                      className="absolute right-0 top-11 z-[120] max-h-80 w-[min(18rem,calc(100vw-1.5rem))] overflow-y-auto rounded-xl border border-subtle bg-elevated p-1.5 text-sm text-foreground "
                     >
                       {strategyOptions.map((option, index) => {
                         const selected = selectedStrategyId === option.id;
@@ -777,7 +777,7 @@ const HomePage: React.FC = () => {
                   type="checkbox"
                   checked={notify}
                   onChange={(e) => setNotify(e.target.checked)}
-                  className="h-3.5 w-3.5 rounded border-border accent-primary"
+                  className="h-3.5 w-3.5 rounded border-divider accent-primary"
                 />
                 {t('home.notify')}
               </label>
@@ -880,7 +880,7 @@ const HomePage: React.FC = () => {
             <div className="fixed inset-0 z-40 md:hidden" onClick={() => setSidebarOpen(false)}>
               <div className="page-drawer-overlay absolute inset-0" />
               <div
-                className="dashboard-card absolute bottom-0 left-0 top-0 flex w-72 flex-col overflow-hidden !rounded-none !rounded-r-xl p-3 shadow-2xl"
+                className="dashboard-card absolute bottom-0 left-0 top-0 flex w-72 flex-col overflow-hidden !rounded-none !rounded-r-xl p-3 "
                 onClick={(event) => event.stopPropagation()}
               >
                 {sidebarContent}
@@ -940,7 +940,7 @@ const HomePage: React.FC = () => {
                   {!isMarketReviewHistoryReport ? (
                     <>
                       <Button
-                        variant="home-action-ai"
+                        variant="primary"
                         size="sm"
                         disabled={isAnalyzing || selectedReport.meta.id === undefined}
                         onClick={handleReanalyze}
@@ -951,7 +951,7 @@ const HomePage: React.FC = () => {
                         {t('home.reanalyze')}
                       </Button>
                       <Button
-                        variant="home-action-ai"
+                        variant="primary"
                         size="sm"
                         disabled={selectedReport.meta.id === undefined}
                         onClick={handleAskFollowUp}
@@ -964,7 +964,7 @@ const HomePage: React.FC = () => {
                     </>
                   ) : (
                     <Button
-                      variant="home-action-ai"
+                      variant="primary"
                       size="sm"
                       disabled={isSubmittingMarketReview}
                       isLoading={isSubmittingMarketReview}
@@ -976,10 +976,10 @@ const HomePage: React.FC = () => {
                     </Button>
                   )}
                   <Button
-                    variant="home-action-ai"
+                    variant="primary"
                     size="sm"
                     disabled={selectedReport.meta.id === undefined || isHistoryTrendUnavailable}
-                    className={isHistoryTrendOpen ? 'border-primary/70 bg-primary/15 text-primary shadow-glow-cyan' : undefined}
+                    className={isHistoryTrendOpen ? 'border-accent/70 bg-primary/15 text-primary shadow-glow-accent' : undefined}
                     onClick={() => {
                       if (isHistoryTrendOpen) {
                         closeHistoryTrend();
@@ -992,7 +992,7 @@ const HomePage: React.FC = () => {
                     {t('home.historyTrend')}
                   </Button>
                   <Button
-                    variant="home-action-ai"
+                    variant="primary"
                     size="sm"
                     disabled={selectedReport.meta.id === undefined}
                     onClick={openMarkdownDrawer}
@@ -1039,7 +1039,7 @@ const HomePage: React.FC = () => {
                 <EmptyState
                   title={t('home.startAnalysisTitle')}
                   description={t('home.startAnalysisDescription')}
-                  className="max-w-xl border-dashed"
+                  className="max-w-xl border  border-divider"
                   icon={(
                     <svg className="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />

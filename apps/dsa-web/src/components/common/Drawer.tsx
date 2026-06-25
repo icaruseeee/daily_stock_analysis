@@ -83,11 +83,11 @@ export const Drawer: React.FC<DrawerProps> = ({
           className={cn(
             'relative flex w-full flex-col bg-card',
             borderClass,
-            side === 'right' ? 'border-border/80' : 'border-border/70 shadow-2xl',
+            side === 'right' ? 'border-divider/80' : 'border-divider/70 ',
             side === 'left' ? 'animate-slide-in-left' : 'animate-slide-in-right'
           )}
         >
-          <div className="flex items-center justify-between border-b border-border/60 px-6 py-4">
+          <div className="flex items-center justify-between border-b border-divider/60 px-6 py-4">
             {title ? (
               <div>
                 <span className="label-uppercase">DETAIL VIEW</span>
@@ -97,7 +97,7 @@ export const Drawer: React.FC<DrawerProps> = ({
             <button
               type="button"
               onClick={onClose}
-              className="inline-flex h-10 w-10 items-center justify-center rounded-xl border border-border/70 bg-card/80 text-secondary-text transition-colors hover:bg-hover hover:text-foreground"
+              className="inline-flex h-10 w-10 items-center justify-center rounded-xl border border-divider/70 bg-card/80 text-secondary-text transition-colors hover:bg-hover hover:text-foreground"
               aria-label={t('common.closeDrawer')}
             >
               <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">

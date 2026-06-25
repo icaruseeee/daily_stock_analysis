@@ -953,16 +953,16 @@ const PortfolioPage: React.FC = () => {
     : null;
 
   return (
-    <div className="portfolio-page min-h-screen space-y-4 p-4 md:p-6">
+    <div className="portfolio-page space-y-4">
       <section className="space-y-3">
         <div className="space-y-2">
-          <h1 className="text-xl md:text-2xl font-semibold text-foreground">{text.title}</h1>
+          <h1 className="text-2xl font-semibold tracking-tight">{text.title}</h1>
           <p className="text-xs md:text-sm text-secondary">
             {text.description}
           </p>
         </div>
         {hasAccounts ? (
-          <div className="rounded-xl border border-white/10 bg-white/[0.02] p-3">
+          <div className="rounded-xl border border-divider/70 bg-white/[0.02] p-3">
             <div className="grid grid-cols-1 xl:grid-cols-[minmax(0,1fr)_220px_280px] gap-2 items-end">
               <div>
                 <p className="text-xs text-secondary mb-1">{text.accountView}</p>
@@ -1014,7 +1014,7 @@ const PortfolioPage: React.FC = () => {
                   type="button"
                   onClick={openAccountDeleteDialog}
                   disabled={!canDeleteSelectedAccount}
-                  className="btn-secondary text-sm flex-1 border-red-400/40 text-red-100 hover:bg-red-500/15 disabled:border-white/10 disabled:text-secondary"
+                  className="btn-secondary text-sm flex-1 border-negative/40 text-red-100 hover:bg-red-500/15 disabled:border-divider/70 disabled:text-secondary"
                 >
                   {accountDeleteLoading ? text.deletingAccount : text.deleteAccount}
                 </button>
@@ -1056,7 +1056,7 @@ const PortfolioPage: React.FC = () => {
       {(showCreateAccount || !hasAccounts) ? (
         <Card padding="md">
           <div className="flex items-center justify-between gap-2">
-            <h2 className="text-sm font-semibold text-foreground">新建账户</h2>
+            <h2 className="text-sm font-semibold">新建账户</h2>
             {hasAccounts ? (
               <button
                 type="button"
@@ -1137,19 +1137,19 @@ const PortfolioPage: React.FC = () => {
       ) : null}
 
       <section className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-3">
-        <Card variant="gradient" padding="md">
+        <Card variant="default" padding="md">
           <p className="text-xs text-secondary">{text.totalEquity}</p>
           <p className="mt-1 text-xl font-semibold text-foreground">{formatMoney(snapshot?.totalEquity, snapshot?.currency || 'CNY')}</p>
         </Card>
-        <Card variant="gradient" padding="md">
+        <Card variant="default" padding="md">
           <p className="text-xs text-secondary">{text.totalMarketValue}</p>
           <p className="mt-1 text-xl font-semibold text-foreground">{formatMoney(snapshot?.totalMarketValue, snapshot?.currency || 'CNY')}</p>
         </Card>
-        <Card variant="gradient" padding="md">
+        <Card variant="default" padding="md">
           <p className="text-xs text-secondary">{text.totalCash}</p>
           <p className="mt-1 text-xl font-semibold text-foreground">{formatMoney(snapshot?.totalCash, snapshot?.currency || 'CNY')}</p>
         </Card>
-        <Card variant="gradient" padding="md">
+        <Card variant="default" padding="md">
           <div className="flex items-start justify-between gap-3">
             <p className="text-xs text-secondary">{text.fxStatus}</p>
             <button
@@ -1176,7 +1176,7 @@ const PortfolioPage: React.FC = () => {
       <section className="grid grid-cols-1 xl:grid-cols-3 gap-3">
         <Card className="xl:col-span-2" padding="md">
           <div className="flex items-center justify-between mb-3">
-            <h2 className="text-sm font-semibold text-foreground">{text.positionsTitle}</h2>
+            <h2 className="text-sm font-semibold">{text.positionsTitle}</h2>
             <span className="text-xs text-secondary">{formatUiText(text.countItems, { count: positionRows.length })}</span>
           </div>
           {portfolioSignalsWarning ? (
@@ -1196,7 +1196,7 @@ const PortfolioPage: React.FC = () => {
           ) : (
             <div className="overflow-x-auto">
               <table className="min-w-[860px] w-full text-sm">
-                <thead className="text-xs text-secondary border-b border-white/10">
+                <thead className="text-xs text-secondary border-b border-divider/70">
                   <tr>
                     <th className="text-left py-2 pr-2">{text.account}</th>
                     <th className="text-left py-2 pr-2">{text.code}</th>
@@ -1216,7 +1216,7 @@ const PortfolioPage: React.FC = () => {
                     const analyzing = positionAnalysisLoadingKey === rowKey;
                     const signal = signalByPositionKey.get(rowKey);
                     return (
-                    <tr key={rowKey} className="border-b border-white/5">
+                    <tr key={rowKey} className="border-b border-divider/50">
                       <td className="py-2 pr-2 text-secondary">{row.accountName}</td>
                       <td className="py-2 pr-2 font-mono text-foreground">{row.symbol}</td>
                       <td className="py-2 pr-2 text-right">{row.quantity.toFixed(2)}</td>
@@ -1273,7 +1273,7 @@ const PortfolioPage: React.FC = () => {
         </Card>
 
         <Card padding="md">
-          <h2 className="text-sm font-semibold text-foreground mb-3">
+          <h2 className="text-sm font-semibold mb-3">
             {concentrationMode === 'sector' ? text.sectorConcentration : text.positionConcentrationFallback}
           </h2>
           {concentrationPieData.length > 0 ? (
@@ -1315,7 +1315,7 @@ const PortfolioPage: React.FC = () => {
 
       <section className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-3">
         <Card padding="md">
-          <h3 className="text-sm font-semibold text-foreground mb-2">{text.drawdownMonitor}</h3>
+          <h3 className="text-sm font-semibold mb-2">{text.drawdownMonitor}</h3>
           <div className="text-xs text-secondary space-y-1">
             <div>{text.maxDrawdown}: {formatPct(risk?.drawdown?.maxDrawdownPct)}</div>
             <div>{text.currentDrawdown}: {formatPct(risk?.drawdown?.currentDrawdownPct)}</div>
@@ -1323,7 +1323,7 @@ const PortfolioPage: React.FC = () => {
           </div>
         </Card>
         <Card padding="md">
-          <h3 className="text-sm font-semibold text-foreground mb-2">{text.stopLossWarning}</h3>
+          <h3 className="text-sm font-semibold mb-2">{text.stopLossWarning}</h3>
           <div className="text-xs text-secondary space-y-1">
             <div>{text.triggeredCount}: {risk?.stopLoss?.triggeredCount ?? 0}</div>
             <div>{text.nearCount}: {risk?.stopLoss?.nearCount ?? 0}</div>
@@ -1331,7 +1331,7 @@ const PortfolioPage: React.FC = () => {
           </div>
         </Card>
         <Card padding="md">
-          <h3 className="text-sm font-semibold text-foreground mb-2">{text.scope}</h3>
+          <h3 className="text-sm font-semibold mb-2">{text.scope}</h3>
           <div className="text-xs text-secondary space-y-1">
             <div>{text.accountCount}: {snapshot?.accountCount ?? 0}</div>
             <div>{text.currency}: {snapshot?.currency || 'CNY'}</div>
@@ -1339,7 +1339,7 @@ const PortfolioPage: React.FC = () => {
           </div>
         </Card>
         <Card padding="md">
-          <h3 className="text-sm font-semibold text-foreground mb-2">{text.aiRiskSignals}</h3>
+          <h3 className="text-sm font-semibold mb-2">{text.aiRiskSignals}</h3>
           <div className="text-xs text-secondary space-y-1">
             {risk?.decisionSignalRisk?.available === false ? (
               <div className="text-warning">{text.aiRiskUnavailable}</div>
@@ -1368,7 +1368,7 @@ const PortfolioPage: React.FC = () => {
 
       <section className="grid grid-cols-1 xl:grid-cols-3 gap-3">
         <Card padding="md">
-          <h3 className="text-sm font-semibold text-foreground mb-3">手工录入：交易</h3>
+          <h3 className="text-sm font-semibold mb-3">手工录入：交易</h3>
           <form className="space-y-2" onSubmit={handleTradeSubmit}>
             <input className={PORTFOLIO_INPUT_CLASS} placeholder="股票代码（例如 600519）" value={tradeForm.symbol}
               onChange={(e) => setTradeForm((prev) => ({ ...prev, symbol: e.target.value }))} required />
@@ -1399,7 +1399,7 @@ const PortfolioPage: React.FC = () => {
         </Card>
 
         <Card padding="md">
-          <h3 className="text-sm font-semibold text-foreground mb-3">手工录入：资金流水</h3>
+          <h3 className="text-sm font-semibold mb-3">手工录入：资金流水</h3>
           <form className="space-y-2" onSubmit={handleCashSubmit}>
             <div className="grid grid-cols-2 gap-2">
               <input className={PORTFOLIO_INPUT_CLASS} type="date" value={cashForm.eventDate}
@@ -1419,7 +1419,7 @@ const PortfolioPage: React.FC = () => {
         </Card>
 
         <Card padding="md">
-          <h3 className="text-sm font-semibold text-foreground mb-3">手工录入：公司行为</h3>
+          <h3 className="text-sm font-semibold mb-3">手工录入：公司行为</h3>
           <form className="space-y-2" onSubmit={handleCorporateSubmit}>
             <input className={PORTFOLIO_INPUT_CLASS} placeholder="股票代码" value={corpForm.symbol}
               onChange={(e) => setCorpForm((prev) => ({ ...prev, symbol: e.target.value }))} required />
@@ -1448,7 +1448,7 @@ const PortfolioPage: React.FC = () => {
 
       <section className="grid grid-cols-1 xl:grid-cols-2 gap-3">
         <Card padding="md">
-          <h3 className="text-sm font-semibold text-foreground mb-3">券商 CSV 导入</h3>
+          <h3 className="text-sm font-semibold mb-3">券商 CSV 导入</h3>
           <div className="space-y-2">
             {brokerLoadWarning ? (
               <InlineAlert
@@ -1504,7 +1504,7 @@ const PortfolioPage: React.FC = () => {
         </Card>
 
         <Card padding="md">
-          <h3 className="text-sm font-semibold text-foreground mb-3">事件记录</h3>
+          <h3 className="text-sm font-semibold mb-3">事件记录</h3>
           <div className="space-y-2">
             <div className="grid grid-cols-2 gap-2">
               <select className={PORTFOLIO_SELECT_CLASS} value={eventType} onChange={(e) => setEventType(e.target.value as EventType)}>
@@ -1550,9 +1550,9 @@ const PortfolioPage: React.FC = () => {
             <div className="text-[11px] text-secondary">
               {writeBlocked ? '删除修正仅在单账户视图可用。请先选择具体账户后再删除错误流水。' : '如有错误流水，可直接删除后重新录入。'}
             </div>
-            <div className="max-h-64 overflow-auto rounded-lg border border-white/10 p-2">
+            <div className="max-h-64 overflow-auto rounded-lg border border-divider/70 p-2">
               {eventType === 'trade' && tradeEvents.map((item) => (
-                <div key={`t-${item.id}`} className="flex items-start justify-between gap-3 border-b border-white/5 py-2 text-xs text-secondary">
+                <div key={`t-${item.id}`} className="flex items-start justify-between gap-3 border-b border-divider/50 py-2 text-xs text-secondary">
                   <div className="min-w-0">
                     {item.tradeDate} {formatSideLabel(item.side)} {item.symbol} 数量={item.quantity} 价格={item.price}
                   </div>
@@ -1572,7 +1572,7 @@ const PortfolioPage: React.FC = () => {
                 </div>
               ))}
               {eventType === 'cash' && cashEvents.map((item) => (
-                <div key={`c-${item.id}`} className="flex items-start justify-between gap-3 border-b border-white/5 py-2 text-xs text-secondary">
+                <div key={`c-${item.id}`} className="flex items-start justify-between gap-3 border-b border-divider/50 py-2 text-xs text-secondary">
                   <div className="min-w-0">
                     {item.eventDate} {formatCashDirectionLabel(item.direction)} {item.amount} {item.currency}
                   </div>
@@ -1592,7 +1592,7 @@ const PortfolioPage: React.FC = () => {
                 </div>
               ))}
               {eventType === 'corporate' && corporateEvents.map((item) => (
-                <div key={`ca-${item.id}`} className="flex items-start justify-between gap-3 border-b border-white/5 py-2 text-xs text-secondary">
+                <div key={`ca-${item.id}`} className="flex items-start justify-between gap-3 border-b border-divider/50 py-2 text-xs text-secondary">
                   <div className="min-w-0">
                     {item.effectiveDate} {formatCorporateActionLabel(item.actionType)} {item.symbol}
                   </div>

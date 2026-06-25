@@ -80,7 +80,7 @@ function CodeExamples({ examples }: { examples?: string[] }) {
     <div className="space-y-2">
       {examples.map((example) => (
         <code
-          className="block whitespace-pre-wrap break-words rounded-lg border border-border/70 bg-background/70 px-3 py-2 font-mono text-xs leading-5 text-foreground"
+          className="block whitespace-pre-wrap break-words rounded-lg border border-divider/70 bg-background/70 px-3 py-2 font-mono text-xs leading-5 text-foreground"
           key={example}
         >
           {example}
@@ -214,12 +214,12 @@ export const SettingsHelpButton: React.FC<SettingsHelpButtonProps> = ({
                 aria-labelledby={titleId}
                 tabIndex={-1}
                 className={cn(
-                  'relative flex max-h-[88vh] w-full flex-col overflow-hidden rounded-t-2xl border border-border/80 bg-card shadow-soft-card-strong',
+                  'relative flex max-h-[88vh] w-full flex-col overflow-hidden rounded-t-2xl border border-divider/80 bg-card ',
                   'sm:max-w-2xl sm:rounded-2xl',
                 )}
               >
                 <div className="h-1 w-full bg-gradient-to-r from-cyan/80 via-primary/70 to-purple/70" />
-                <div className="flex items-start justify-between gap-4 border-b border-border/60 px-5 py-4">
+                <div className="flex items-start justify-between gap-4 border-b border-divider/60 px-5 py-4">
                   <div className="min-w-0">
                     {showFieldKey ? (
                       <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-muted-text">
@@ -237,7 +237,7 @@ export const SettingsHelpButton: React.FC<SettingsHelpButtonProps> = ({
                     ref={closeButtonRef}
                     type="button"
                     onClick={() => setOpen(false)}
-                    className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-xl border border-border/70 bg-card/80 text-secondary-text transition-colors hover:bg-hover hover:text-foreground focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-cyan/15"
+                    className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-xl border border-divider/70 bg-card/80 text-secondary-text transition-colors hover:bg-hover hover:text-foreground focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-cyan/15"
                     aria-label={t('settings.helpClose')}
                   >
                     <X aria-hidden="true" className="h-4 w-4" />
@@ -272,7 +272,7 @@ export const SettingsHelpButton: React.FC<SettingsHelpButtonProps> = ({
                       <div className="flex flex-wrap gap-2">
                         {docs.map((doc) => (
                           <a
-                            className="inline-flex items-center gap-1.5 rounded-lg border border-border/70 bg-background/60 px-3 py-2 text-xs text-secondary-text transition-colors hover:bg-hover hover:text-foreground"
+                            className="inline-flex items-center gap-1.5 rounded-lg border border-divider/70 bg-background/60 px-3 py-2 text-xs text-secondary-text transition-colors hover:bg-hover hover:text-foreground"
                             href={doc.href}
                             key={`${doc.label}-${doc.href}`}
                             rel="noreferrer"

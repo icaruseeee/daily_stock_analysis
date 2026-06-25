@@ -17,7 +17,7 @@ export const SectionCard: React.FC<SectionCardProps> = ({
   className = '',
 }) => {
   return (
-    <Card className={className} padding="md" variant="bordered">
+    <Card className={className} padding="md" variant="default">
       <div className="mb-4 flex items-start justify-between gap-3">
         <div>
           {subtitle ? <span className="label-uppercase">{subtitle}</span> : null}

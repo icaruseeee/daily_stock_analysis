@@ -16,7 +16,7 @@ export const PageLoadingFallback: React.FC<PageLoadingFallbackProps> = ({ fullPa
         : 'flex min-h-[60vh] items-center justify-center'
     }
   >
-    <div className="h-8 w-8 animate-spin rounded-full border-2 border-cyan/20 border-t-cyan" />
+    <div className="h-8 w-8 animate-spin rounded-full border-2 border-accent/20 border-t-accent" />
   </div>
 );
 
@@ -68,7 +68,7 @@ class RouteErrorBoundary extends Component<RouteErrorBoundaryProps, RouteErrorBo
             : 'flex min-h-[60vh] items-center justify-center px-2 py-8'
         }
       >
-        <div className="w-full max-w-md rounded-2xl border border-border bg-card/94 p-6 text-center shadow-soft-card">
+        <div className="w-full max-w-md rounded-2xl border border-divider bg-card/94 p-6 text-center ">
           <h1 className="text-xl font-semibold text-foreground">{this.props.text.title}</h1>
           <p className="mt-3 text-sm leading-6 text-secondary-text">
             {this.props.text.description}
@@ -83,7 +83,7 @@ class RouteErrorBoundary extends Component<RouteErrorBoundaryProps, RouteErrorBo
             </button>
             <button
               type="button"
-              className="rounded-xl border border-border/70 bg-card px-4 py-2 text-sm font-medium text-foreground transition-colors hover:bg-hover"
+              className="rounded-xl border border-divider/70 bg-card px-4 py-2 text-sm font-medium text-foreground transition-colors hover:bg-hover"
               onClick={() => window.location.assign('/')}
             >
               {this.props.text.backHome}

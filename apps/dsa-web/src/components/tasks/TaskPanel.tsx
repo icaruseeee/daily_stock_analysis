@@ -187,7 +187,7 @@ export const TaskPanel: React.FC<TaskPanelProps> = ({
 
   return (
     <Card
-      variant="bordered"
+      variant="default"
       padding="none"
       className={`home-panel-card overflow-hidden ${className}`}
     >
