@@ -1,0 +1,10 @@
+www.r-stock.top, r-stock.top {
+    log {
+        output file /var/log/caddy/access.log {
+            roll_size 10mb
+            roll_keep 5
+        }
+        format json
+    }
+    reverse_proxy server:8000
+}
