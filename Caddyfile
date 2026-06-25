@@ -1,5 +1,9 @@
 www.r-stock.top, r-stock.top {
     encode gzip zstd
+
+    # 静态资源缓存 30 天（第二次访问秒开）
+    header /assets/* Cache-Control "public, max-age=2592000, immutable"
+
     log {
         output file /var/log/caddy/access.log {
             roll_size 10mb
