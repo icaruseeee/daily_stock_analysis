@@ -48,8 +48,8 @@ RUN groupadd -g 1000 dsa && \
 # 复制依赖文件
 COPY requirements.txt .
 
-# 安装 Python 依赖
-RUN --mount=type=cache,target=/root/.cache/pip pip install -r requirements.txt
+# 安装 Python 依赖（国内服务器走阿里云 PyPI 镜像加速）
+RUN pip install --no-cache-dir -r requirements.txt -i https://mirrors.aliyun.com/pypi/simple/ --trusted-host mirrors.aliyun.com
 
 # 复制应用代码
 COPY *.py ./
