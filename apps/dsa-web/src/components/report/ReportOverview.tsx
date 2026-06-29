@@ -306,6 +306,21 @@ export const ReportOverview: React.FC<ReportOverviewProps> = ({
             </div>
           </Card>
 
+          {preparedRelatedBoards.length > 0 && (
+            <Card variant="default" padding="sm" className="home-panel-card text-left">
+              <section aria-label={text.relatedBoards}>
+                <div className="mb-3 flex items-baseline gap-2">
+                  <span className="label-uppercase">{text.boardLinkage}</span>
+                  <h3 className="mt-0.5 text-base font-semibold text-foreground">{text.relatedBoards}</h3>
+                </div>
+
+                <div className="home-related-board-list flex flex-wrap items-center gap-1.5 pb-1">
+                  {preparedRelatedBoards.map(renderBoardChip)}
+                </div>
+              </section>
+            </Card>
+          )}
+
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 items-start">
             <div className="space-y-4">
               {/* 操作建议 */}
@@ -330,21 +345,6 @@ export const ReportOverview: React.FC<ReportOverviewProps> = ({
                   </div>
                 </div>
               </Card>
-
-              {preparedRelatedBoards.length > 0 && (
-                <Card variant="default" padding="sm" className="home-panel-card text-left">
-                  <section aria-label={text.relatedBoards}>
-                    <div className="mb-3 flex items-baseline gap-2">
-                      <span className="label-uppercase">{text.boardLinkage}</span>
-                      <h3 className="mt-0.5 text-base font-semibold text-foreground">{text.relatedBoards}</h3>
-                    </div>
-
-                    <div className="home-related-board-list flex flex-wrap items-center gap-1.5 pb-1">
-                      {preparedRelatedBoards.map(renderBoardChip)}
-                    </div>
-                  </section>
-                </Card>
-              )}
             </div>
 
             {/* 趋势预测 */}
