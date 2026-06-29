@@ -2822,6 +2822,7 @@ class DataFetcherManager:
         stock_code: str,
         market: str,
         budget_seconds: Optional[float] = None,
+        existing_quote: Any = None,
     ) -> Dict[str, Any]:
         """HK/US fundamental aggregation via yfinance.
 
@@ -2878,11 +2879,15 @@ class DataFetcherManager:
         # same shape as AkShare, so the existing block formatter still works.
         valuation_timeout = min(fetch_timeout, stage_timeout) if stage_timeout > 0 else 0
         if valuation_timeout > 0:
-            quote_payload, valuation_err, valuation_ms = self._run_with_retry(
-                lambda: self.get_realtime_quote(stock_code),
-                valuation_timeout,
-                "fundamental_valuation",
-            )
+            if existing_quote is not None:
+                # Reuse the pre-fetched quote to avoid a redundant round-trip
+                quote_payload, valuation_err, valuation_ms = existing_quote, None, 0
+            else:
+                quote_payload, valuation_err, valuation_ms = self._run_with_retry(
+                    lambda: self.get_realtime_quote(stock_code),
+                    valuation_timeout,
+                    "fundamental_valuation",
+                )
         else:
             quote_payload, valuation_err, valuation_ms = None, "fundamental stage timeout", 0
         valuation_payload = {
@@ -3035,10 +3040,22 @@ class DataFetcherManager:
     def get_fundamental_context(
         self,
         stock_code: str,
-        budget_seconds: Optional[float] = None
+        budget_seconds: Optional[float] = None,
+        existing_quote: Any = None,
     ) -> Dict[str, Any]:
         """
         Aggregate fundamental blocks with fail-open semantics.
+
+        Parameters
+        ----------
+        stock_code:
+            Normalised stock code.
+        budget_seconds:
+            Total time budget for the entire fundamental stage.
+        existing_quote:
+            Optional pre-fetched realtime quote (UnifiedRealtimeQuote).
+            When provided the valuation block reuses it instead of calling
+            ``get_realtime_quote`` again, saving a round-trip to the data source.
         """
         from src.config import get_config
 
@@ -3057,6 +3074,7 @@ class DataFetcherManager:
                 stock_code,
                 market=market,
                 budget_seconds=budget_seconds,
+                existing_quote=existing_quote,
             )
 
         stage_timeout = float(
@@ -3101,11 +3119,15 @@ class DataFetcherManager:
 
         valuation_timeout = min(fetch_timeout, remaining_seconds)
         if valuation_timeout > 0:
-            quote_payload, valuation_err, valuation_ms = self._run_with_retry(
-                lambda: self.get_realtime_quote(stock_code),
-                valuation_timeout,
-                "fundamental_valuation",
-            )
+            if existing_quote is not None:
+                # Reuse the pre-fetched quote to avoid a redundant round-trip
+                quote_payload, valuation_err, valuation_ms = existing_quote, None, 0
+            else:
+                quote_payload, valuation_err, valuation_ms = self._run_with_retry(
+                    lambda: self.get_realtime_quote(stock_code),
+                    valuation_timeout,
+                    "fundamental_valuation",
+                )
             _consume_budget(valuation_ms)
         else:
             quote_payload, valuation_err, valuation_ms = None, "fundamental stage timeout", 0
