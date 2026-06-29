@@ -107,9 +107,7 @@ describe('BacktestPage', () => {
     const windowInput = screen.getByPlaceholderText('10');
 
     expect(filterInput).toHaveClass('input-surface');
-    expect(filterInput).toHaveClass('input-focus-glow');
     expect(windowInput).toHaveClass('input-surface');
-    expect(windowInput).toHaveClass('input-focus-glow');
 
     expect(await screen.findByText('盈利')).toBeInTheDocument();
     expect(screen.getByText('已完成')).toBeInTheDocument();

@@ -85,7 +85,7 @@ export const SidebarNav: React.FC<SidebarNavProps> = ({ collapsed = false, onNav
   );
   const itemInteractiveClass = cn(
     itemBaseClass,
-    'hover:bg-black/5 hover:text-ink-muted-80'
+    'hover:bg-hover hover:text-ink-muted-80'
   );
   const itemActiveClass = 'bg-accent/12 text-accent';
   const itemIconClass = cn(isRail ? 'h-[18px] w-[18px]' : 'h-5 w-5', 'shrink-0');

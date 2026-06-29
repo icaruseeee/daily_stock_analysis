@@ -42,7 +42,7 @@ export const Shell: React.FC<ShellProps> = ({ children }) => {
         <button
           type="button"
           onClick={() => setMobileOpen(true)}
-          className="pointer-events-auto inline-flex h-8 w-8 items-center justify-center rounded-full border border-divider bg-surface/85 text-ink-muted backdrop-blur-md transition-colors hover:bg-black/5"
+          className="pointer-events-auto inline-flex h-8 w-8 items-center justify-center rounded-full border border-divider bg-surface/85 text-ink-muted backdrop-blur-md transition-colors hover:bg-hover"
           aria-label={t('layout.openNav')}
         >
           <Menu className="h-4 w-4" />

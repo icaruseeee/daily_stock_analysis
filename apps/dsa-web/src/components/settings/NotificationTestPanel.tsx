@@ -153,7 +153,7 @@ export const NotificationTestPanel: React.FC<NotificationTestPanelProps> = ({
             setIsContentEdited(true);
             setContent(event.target.value);
           }}
-          className="input-surface input-focus-glow min-h-[112px] w-full resize-y rounded-xl border bg-transparent px-4 py-3 text-sm leading-6 text-foreground outline-none disabled:cursor-not-allowed disabled:opacity-50"
+          className="input-surface min-h-[112px] w-full resize-y rounded-xl border bg-transparent px-4 py-3 text-sm leading-6 text-foreground outline-none disabled:cursor-not-allowed disabled:opacity-50"
         />
       </label>
 

@@ -15,14 +15,6 @@ interface ScoreGaugeProps {
 
 type SentimentKey = 'greed' | 'neutral' | 'fear';
 
-type GaugeVisualStyle = {
-  svgFilter?: string;
-  glowBlur: number;
-  glowOpacity: number;
-  glowStrokeExtra: number;
-  valueTextShadow?: string;
-};
-
 /**
  * Sentiment score gauge with an animated glowing ring.
  * Dynamically calculates colors based on sentiment score.
@@ -87,7 +79,7 @@ export const ScoreGauge: React.FC<ScoreGaugeProps> = ({
     lg: { width: 180, stroke: 12, fontSize: 'text-5xl', labelSize: 'text-base', gap: 10 },
   };
 
-  const { width, stroke, fontSize, labelSize, gap } = sizeConfig[size];
+  const { width, stroke, fontSize, labelSize } = sizeConfig[size];
   const radius = (width - stroke) / 2;
   const circumference = 2 * Math.PI * radius;
 
@@ -128,21 +120,6 @@ export const ScoreGauge: React.FC<ScoreGaugeProps> = ({
   const sentimentKey = getSentimentKey(animatedScore);
   const colors = sentimentConfig[sentimentKey];
   const uniqueId = `${sentimentKey}-${score}-${animatedScore.toFixed(0)}`;
-  const gaugeTheme: GaugeVisualStyle = isDark
-    ? {
-        svgFilter: `drop-shadow(0 0 12px ${colors.glowFilter})`,
-        glowBlur: 4,
-        glowOpacity: 0.3,
-        glowStrokeExtra: gap,
-        valueTextShadow: `0 0 30px ${colors.glowFilter}`,
-      }
-    : {
-        svgFilter: `drop-shadow(0 0 8px ${colors.glowFilter.replace('0.66', '0.28')})`,
-        glowBlur: 3.4,
-        glowOpacity: 0.26,
-        glowStrokeExtra: Math.max(3, gap * 0.55),
-        valueTextShadow: `0 0 16px ${colors.glowFilter.replace('0.66', '0.22')}`,
-      };
 
   return (
     <div className={cn('flex flex-col items-center', className)}>
@@ -157,7 +134,6 @@ export const ScoreGauge: React.FC<ScoreGaugeProps> = ({
           className="gauge-ring overflow-visible"
           width={width}
           height={width}
-          style={gaugeTheme.svgFilter ? { filter: gaugeTheme.svgFilter } : {}}
         >
           <defs>
             {/* Gradient definition - dark: glow gradient; light: clean gradient */}
@@ -174,14 +150,6 @@ export const ScoreGauge: React.FC<ScoreGaugeProps> = ({
                 </>
               )}
             </linearGradient>
-
-            <filter id={`gauge-glow-${uniqueId}`}>
-              <feGaussianBlur stdDeviation={gaugeTheme.glowBlur} result="blur" />
-              <feMerge>
-                <feMergeNode in="blur" />
-                <feMergeNode in="SourceGraphic" />
-              </feMerge>
-            </filter>
           </defs>
 
           {/* Background track */}
@@ -195,20 +163,6 @@ export const ScoreGauge: React.FC<ScoreGaugeProps> = ({
             strokeLinecap="round"
             strokeDasharray={`${arcLength} ${circumference}`}
             transform={`rotate(135 ${width / 2} ${width / 2})`}
-          />
-
-          <circle
-            cx={width / 2}
-            cy={width / 2}
-            r={radius}
-            fill="none"
-            stroke={isDark ? colors.color : colors.lightColor}
-            strokeWidth={stroke + gaugeTheme.glowStrokeExtra}
-            strokeLinecap="round"
-            strokeDasharray={`${progress} ${circumference}`}
-            transform={`rotate(135 ${width / 2} ${width / 2})`}
-            opacity={gaugeTheme.glowOpacity}
-            filter={`url(#gauge-glow-${uniqueId})`}
           />
 
           {/* Progress arc */}
@@ -229,7 +183,6 @@ export const ScoreGauge: React.FC<ScoreGaugeProps> = ({
         <div className="absolute inset-0 flex flex-col items-center justify-center">
           <span
             className={cn('font-bold', fontSize, isDark ? 'text-white' : 'text-foreground')}
-            style={gaugeTheme.valueTextShadow ? { textShadow: gaugeTheme.valueTextShadow } : {}}
           >
             {displayScore}
           </span>

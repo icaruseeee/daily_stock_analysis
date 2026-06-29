@@ -38,7 +38,7 @@ export const ShellHeader: React.FC<ShellHeaderProps> = ({
         <button
           type="button"
           onClick={onOpenMobileNav}
-          className="inline-flex h-8 w-8 items-center justify-center rounded-full border border-divider bg-surface/70 text-ink-muted transition-colors hover:bg-black/5 lg:hidden"
+          className="inline-flex h-8 w-8 items-center justify-center rounded-full border border-divider bg-surface/70 text-ink-muted transition-colors hover:bg-hover lg:hidden"
           aria-label={t('layout.openNav')}
         >
           <Menu className="h-4 w-4" />
@@ -47,7 +47,7 @@ export const ShellHeader: React.FC<ShellHeaderProps> = ({
         <button
           type="button"
           onClick={onToggleSidebar}
-          className="hidden h-8 w-8 items-center justify-center rounded-full border border-divider bg-surface/70 text-ink-muted transition-colors hover:bg-black/5 lg:inline-flex"
+          className="hidden h-8 w-8 items-center justify-center rounded-full border border-divider bg-surface/70 text-ink-muted transition-colors hover:bg-hover lg:inline-flex"
           aria-label={collapsed ? t('layout.expandSidebar') : t('layout.collapseSidebar')}
         >
           {collapsed ? <PanelLeftOpen className="h-4 w-4" /> : <PanelLeftClose className="h-4 w-4" />}

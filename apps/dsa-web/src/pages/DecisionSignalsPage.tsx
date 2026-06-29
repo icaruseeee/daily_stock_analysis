@@ -558,7 +558,7 @@ const DecisionSignalsPage: React.FC = () => {
         <Card padding="md">
           <form className="grid gap-3 md:grid-cols-3 xl:grid-cols-7" onSubmit={handleApplyFilters}>
             <select
-              className="input-surface input-focus-glow h-11 rounded-xl border bg-transparent px-3 text-sm"
+              className="input-surface h-11 rounded-xl border bg-transparent px-3 text-sm"
               value={filters.market}
               onChange={(event) => setFilters((current) => ({ ...current, market: event.target.value as ListFilters['market'] }))}
               aria-label={t('decisionSignals.market')}
@@ -569,14 +569,14 @@ const DecisionSignalsPage: React.FC = () => {
               ))}
             </select>
             <input
-              className="input-surface input-focus-glow h-11 rounded-xl border bg-transparent px-3 text-sm"
+              className="input-surface h-11 rounded-xl border bg-transparent px-3 text-sm"
               value={filters.stockCode}
               onChange={(event) => setFilters((current) => ({ ...current, stockCode: event.target.value }))}
               placeholder={t('decisionSignals.stockCode')}
               aria-label={t('decisionSignals.stockCode')}
             />
             <select
-              className="input-surface input-focus-glow h-11 rounded-xl border bg-transparent px-3 text-sm"
+              className="input-surface h-11 rounded-xl border bg-transparent px-3 text-sm"
               value={filters.action}
               onChange={(event) => setFilters((current) => ({ ...current, action: event.target.value as ListFilters['action'] }))}
               aria-label={t('decisionSignals.action')}
@@ -587,7 +587,7 @@ const DecisionSignalsPage: React.FC = () => {
               ))}
             </select>
             <select
-              className="input-surface input-focus-glow h-11 rounded-xl border bg-transparent px-3 text-sm"
+              className="input-surface h-11 rounded-xl border bg-transparent px-3 text-sm"
               value={filters.marketPhase}
               onChange={(event) => setFilters((current) => ({ ...current, marketPhase: event.target.value as ListFilters['marketPhase'] }))}
               aria-label={t('decisionSignals.marketPhase')}
@@ -598,7 +598,7 @@ const DecisionSignalsPage: React.FC = () => {
               ))}
             </select>
             <select
-              className="input-surface input-focus-glow h-11 rounded-xl border bg-transparent px-3 text-sm"
+              className="input-surface h-11 rounded-xl border bg-transparent px-3 text-sm"
               value={filters.sourceType}
               onChange={(event) => setFilters((current) => ({ ...current, sourceType: event.target.value as ListFilters['sourceType'] }))}
               aria-label={t('decisionSignals.source')}
@@ -609,7 +609,7 @@ const DecisionSignalsPage: React.FC = () => {
               ))}
             </select>
             <input
-              className="input-surface input-focus-glow h-11 rounded-xl border bg-transparent px-3 text-sm"
+              className="input-surface h-11 rounded-xl border bg-transparent px-3 text-sm"
               value={filters.sourceReportId}
               onChange={(event) => setFilters((current) => ({ ...current, sourceReportId: event.target.value }))}
               placeholder={t('decisionSignals.sourceReportId')}
@@ -620,7 +620,7 @@ const DecisionSignalsPage: React.FC = () => {
               type="number"
             />
             <select
-              className="input-surface input-focus-glow h-11 rounded-xl border bg-transparent px-3 text-sm"
+              className="input-surface h-11 rounded-xl border bg-transparent px-3 text-sm"
               value={filters.status}
               onChange={(event) => setFilters((current) => ({ ...current, status: event.target.value as ListFilters['status'] }))}
               aria-label={t('decisionSignals.status')}
@@ -680,7 +680,7 @@ const DecisionSignalsPage: React.FC = () => {
         <Card title={t('decisionSignals.latestTitle')} subtitle={t('decisionSignals.latestDescription')} padding="md">
           <form className="flex flex-col gap-3 md:flex-row" onSubmit={handleLatestSearch}>
             <input
-              className="input-surface input-focus-glow h-11 flex-1 rounded-xl border bg-transparent px-3 text-sm"
+              className="input-surface h-11 flex-1 rounded-xl border bg-transparent px-3 text-sm"
               value={latestStockCode}
               onChange={(event) => setLatestStockCode(event.target.value)}
               placeholder={t('decisionSignals.latestPlaceholder')}

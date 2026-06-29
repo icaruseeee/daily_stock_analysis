@@ -48,7 +48,7 @@ export function SuggestionsList({
           aria-selected={index === highlightedIndex}
           className={cn(
             'px-4 py-1 cursor-pointer flex items-center justify-between',
-            'hover:bg-black/5',
+            'hover:bg-hover',
             index === highlightedIndex && 'bg-black/5',
           )}
           onClick={() => onSelect(suggestion)}
