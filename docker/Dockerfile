@@ -48,7 +48,12 @@ RUN groupadd -g 1000 dsa && \
 # 复制依赖文件
 COPY requirements.txt .
 
-# 安装 Python 依赖（国内服务器走阿里云 PyPI 镜像加速）
+# AlphaSift — 从本地 vendor 目录安装，避免 Docker 内走 GitHub 网络
+COPY vendor/alphasift /vendor/alphasift
+RUN pip install --no-cache-dir /vendor/alphasift && \
+    sed -i '/alphasift/d' requirements.txt
+
+# 安装其余 Python 依赖（国内服务器走阿里云 PyPI 镜像加速）
 RUN pip install --no-cache-dir -r requirements.txt -i https://mirrors.aliyun.com/pypi/simple/ --trusted-host mirrors.aliyun.com
 
 # 复制应用代码
