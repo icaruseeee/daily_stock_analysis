@@ -38,6 +38,7 @@ type BoardSignalMaps = {
 type PreparedBoard = {
   key: string;
   name: string;
+  type?: string;
   signal?: BoardSignal;
 };
 
@@ -150,6 +151,7 @@ const buildPreparedRelatedBoards = (
     preparedBoards.push({
       key: `${boardName}-${board?.code || index}`,
       name: boardName,
+      type: board?.type,
       signal: resolveBoardSignal(board, signalMaps),
     });
     return preparedBoards;
@@ -221,6 +223,11 @@ export const ReportOverview: React.FC<ReportOverviewProps> = ({
       <span className="home-accent-chip px-2 py-0.5 text-xs font-medium">
         {board.name}
       </span>
+      {board.type && (
+        <span className="home-board-pill rounded-full px-2 py-0.5 text-xs">
+          {board.type}
+        </span>
+      )}
       {board.signal && (
         <Badge
           variant={getBoardStatusVariant(board.signal.status)}
@@ -323,6 +330,21 @@ export const ReportOverview: React.FC<ReportOverviewProps> = ({
                   </div>
                 </div>
               </Card>
+
+              {preparedRelatedBoards.length > 0 && (
+                <Card variant="default" padding="sm" className="home-panel-card text-left">
+                  <section aria-label={text.relatedBoards}>
+                    <div className="mb-3 flex items-baseline gap-2">
+                      <span className="label-uppercase">{text.boardLinkage}</span>
+                      <h3 className="mt-0.5 text-base font-semibold text-foreground">{text.relatedBoards}</h3>
+                    </div>
+
+                    <div className="home-related-board-list flex flex-wrap items-center gap-1.5 pb-1">
+                      {preparedRelatedBoards.map(renderBoardChip)}
+                    </div>
+                  </section>
+                </Card>
+              )}
             </div>
 
             {/* 趋势预测 */}
@@ -348,21 +370,6 @@ export const ReportOverview: React.FC<ReportOverviewProps> = ({
               </div>
             </Card>
           </div>
-
-          {preparedRelatedBoards.length > 0 && (
-            <Card variant="bordered" padding="sm" className="home-panel-card min-w-0 max-w-full text-left">
-              <section aria-label={text.relatedBoards} className="min-w-0 max-w-full">
-                <div className="mb-3 flex min-w-0 items-baseline gap-2">
-                  <span className="label-uppercase">{text.boardLinkage}</span>
-                  <h3 className="mt-0.5 text-base font-semibold text-foreground">{text.relatedBoards}</h3>
-                </div>
-
-                <div className="home-related-board-list flex min-h-6 w-full min-w-0 max-w-full flex-nowrap items-center gap-2 overflow-x-auto overscroll-x-contain touch-pan-x pb-1">
-                  {preparedRelatedBoards.map(renderBoardChip)}
-                </div>
-              </section>
-            </Card>
-          )}
         </div>
 
         {/* 右侧：情绪指标 / 自选操作 */}
