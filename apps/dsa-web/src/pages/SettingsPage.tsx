@@ -334,7 +334,7 @@ const FirstRunSetupCard: React.FC<FirstRunSetupCardProps> = ({
             <p className="text-sm font-semibold text-foreground">{t('settings.setupGuideHiddenTitle')}</p>
             <p className="mt-1 text-xs leading-5 text-muted-text">{t('settings.setupGuideHiddenDescription')}</p>
           </div>
-          <Button type="button" variant="settings-secondary" size="sm" onClick={() => setIsHidden(false)}>
+          <Button type="button" variant="secondary" size="sm" onClick={() => setIsHidden(false)}>
             {t('settings.setupGuideOpen')}
           </Button>
         </div>
@@ -360,7 +360,7 @@ const FirstRunSetupCard: React.FC<FirstRunSetupCardProps> = ({
           <div className="flex shrink-0 flex-wrap items-center gap-2">
             <Button
               type="button"
-              variant="settings-secondary"
+              variant="secondary"
               size="sm"
               disabled={isLoading}
               isLoading={isLoading}
@@ -370,7 +370,7 @@ const FirstRunSetupCard: React.FC<FirstRunSetupCardProps> = ({
               <RefreshCw className="h-4 w-4" aria-hidden="true" />
               {t('settings.setupGuideRefresh')}
             </Button>
-            <Button type="button" variant="settings-secondary" size="sm" onClick={() => setIsHidden(true)}>
+            <Button type="button" variant="secondary" size="sm" onClick={() => setIsHidden(true)}>
               {t('settings.setupGuideHide')}
             </Button>
           </div>
@@ -410,18 +410,18 @@ const FirstRunSetupCard: React.FC<FirstRunSetupCardProps> = ({
         ) : null}
 
         <div className="flex flex-wrap items-center gap-2">
-          <Button type="button" variant="settings-secondary" size="sm" onClick={() => onSelectCategory('ai_model')}>
+          <Button type="button" variant="secondary" size="sm" onClick={() => onSelectCategory('ai_model')}>
             {t('settings.setupGuideConfigureLlm')}
           </Button>
-          <Button type="button" variant="settings-secondary" size="sm" onClick={() => onSelectCategory('base')}>
+          <Button type="button" variant="secondary" size="sm" onClick={() => onSelectCategory('base')}>
             {t('settings.setupGuideAddStocks')}
           </Button>
-          <Button type="button" variant="settings-secondary" size="sm" onClick={() => onSelectCategory('notification')}>
+          <Button type="button" variant="secondary" size="sm" onClick={() => onSelectCategory('notification')}>
             {t('settings.setupGuideConfigureNotification')}
           </Button>
           <Button
             type="button"
-            variant="settings-primary"
+            variant="primary"
             size="sm"
             disabled={!canRunSmoke || isSaving || isRunningSmoke}
             isLoading={isRunningSmoke}
